@@ -15,24 +15,26 @@ const Auth = () => {
   };
 
   return (
-    <div className="Auth">
-      <form onSubmit={onSubmitHandler}>
-        <FormInput
-          type={'email'}
-          name={'Email'}
-          placeholder={'your@email.com'}
-          changeHandler={onChangeHandler}
-          required={true}
-        />
-        <FormInput
-          type={'password'}
-          name={'Password'}
-          placeholder={'Password'}
-          changeHandler={onChangeHandler}
-          required={true}
-        />
-        <Button style={'button-success'}>Log In</Button>
-      </form>
+    <div className="Auth-Overlay">
+      <div className="Auth">
+        <form onSubmit={onSubmitHandler}>
+          <FormInput
+            type={'email'}
+            name={'Email'}
+            placeholder={'your@email.com'}
+            changeHandler={onChangeHandler}
+            required={true}
+          />
+          <FormInput
+            type={'password'}
+            name={'Password'}
+            placeholder={'Password'}
+            changeHandler={onChangeHandler}
+            required={true}
+          />
+          <Button style={'button-success'}>Log In</Button>
+        </form>
+      </div>
     </div>
   );
 };

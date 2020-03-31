@@ -1,13 +1,26 @@
+.Auth-Overlay {
+  position: absolute;
+  background-image: url(../images/fx-background.png);
+  background-position: center;
+  background-size: cover;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 .Auth {
+  background-color: rgba(5, 5, 5, 0.76);
+  backdrop-filter: blur(4px);
   color: #f4f4f4;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
 }
 
 .Auth form {
   width: 300px;
-  margin: 50% auto;
+  margin: 0 auto;
   border-radius: 5px;
 }
