@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 
-function App() {
+import './App.css';
+import Auth from './containers/Auth';
+
+const App = () => {
+  const [isLoggedin, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState(null);
+
+  const initialiseAccount = token => {
+    localStorage.setItem('token', JSON.stringify(token));
+    setIsLoggedIn(true);
+    setToken(token);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={props => <Auth accountInit={initialiseAccount} />}
+          />
+          <Redirect to="/" />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;
