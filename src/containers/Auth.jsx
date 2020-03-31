@@ -10,7 +10,9 @@ const Auth = () => {
 
   const onChangeHandler = () => {};
 
-  const onSubmitHandler = () => {};
+  const onSubmitHandler = event => {
+    event.preventDefault();
+  };
 
   return (
     <div className="Auth">
