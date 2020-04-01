@@ -27,6 +27,17 @@ button {
   background: rgb(9, 121, 27);
 }
 
+.button-greyed-out {
+  color: rgb(93, 93, 93);
+  background: rgb(124, 124, 124);
+  font-size: 28px;
+  margin: 15px 0;
+  border-radius: 5px;
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+}
+
 .button-cancel {
   color: white;
   background: rgb(143, 101, 2);

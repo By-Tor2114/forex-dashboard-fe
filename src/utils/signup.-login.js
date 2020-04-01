@@ -3,8 +3,6 @@ import axios from 'axios';
 const BASE_URL = require('./axios');
 
 const authHandler = async ({ email, password, firstName, lastName }, path) => {
-  console.log(email, password, firstName, lastName, path);
-
   try {
     const { data } = await axios.post(`${BASE_URL}/users/${path}`, {
       email,
