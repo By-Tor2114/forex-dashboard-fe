@@ -19,6 +19,7 @@ const FormInput = ({
         type={type}
         placeholder={placeholder}
         required={required}
+        onChange={changeHandler}
       />
     </div>
   );

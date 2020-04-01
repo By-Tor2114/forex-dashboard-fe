@@ -3,9 +3,10 @@ import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 
 import './App.css';
 import Auth from './containers/Auth';
+import Navbar from './components/Navbar/Navbar';
 
 const App = () => {
-  const [isLoggedin, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(null);
 
   const initialiseAccount = token => {
@@ -14,8 +15,30 @@ const App = () => {
     setToken(token);
   };
 
-  return (
-    <div className="App">
+  const logoutHandler = () => {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+    setToken(null);
+  };
+
+  useEffect(() => {
+    if (localStorage.token) {
+      setToken(JSON.parse(localStorage.token));
+      setIsLoggedIn(true);
+    }
+  }, [isLoggedIn]);
+
+  let routes;
+
+  if (isLoggedIn) {
+    routes = (
+      <BrowserRouter>
+        <Navbar logout={logoutHandler} />
+        <Switch></Switch>
+      </BrowserRouter>
+    );
+  } else {
+    routes = (
       <BrowserRouter>
         <Switch>
           <Route
@@ -26,8 +49,10 @@ const App = () => {
           <Redirect to="/" />
         </Switch>
       </BrowserRouter>
-    </div>
-  );
+    );
+  }
+
+  return <div className="App">{routes}</div>;
 };
 
 export default App;

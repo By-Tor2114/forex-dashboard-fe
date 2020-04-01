@@ -1,18 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 
-import './Auth.css';
 import FormInput from '../components/FormInput/FormInput';
 import Button from '../components/Button/Button';
 
-const Auth = () => {
+import { authHandler } from '../utils/signup.-login';
+import './Auth.css';
+
+const Auth = ({ accountInit }) => {
   const [isLoggingIn, setIsLoggingIn] = useState(true);
   const [path, setPath] = useState('login');
+  const [auth, setAuth] = useState({});
+  const [authError, setAuthError] = useState(null);
 
-  const onChangeHandler = () => {};
-
-  const onSubmitHandler = event => {
-    event.preventDefault();
+  const onChangeHandler = event => {
+    setAuth({ ...auth, [event.target.type]: event.target.value });
   };
+
+  const loginToggler = () => {
+    setIsLoggingIn(!isLoggingIn);
+    setPath(!isLoggingIn ? 'login' : 'signup');
+    setAuthError(null);
+  };
+
+  const onSubmitHandler = async event => {
+    event.preventDefault();
+
+    const response = await authHandler(auth, path);
+
+    if (response.token) {
+      accountInit(response);
+    } else {
+      setAuthError(<p className="warning">{response}</p>);
+    }
+  };
+
+  const authMessage = isLoggingIn ? (
+    <Fragment>
+      <p>Don't have an account? </p>
+      <p>
+        <span onClick={loginToggler} className="span-highlight">
+          Switch to sign-up
+        </span>
+      </p>
+    </Fragment>
+  ) : (
+    <Fragment>
+      <p>Already have an account? </p>
+      <p>
+        <span onClick={loginToggler} className="span-highlight">
+          Switch to login
+        </span>
+      </p>
+    </Fragment>
+  );
 
   return (
     <div className="Auth-Overlay">
@@ -32,7 +72,11 @@ const Auth = () => {
             changeHandler={onChangeHandler}
             required={true}
           />
-          <Button style={'button-success'}>Log In</Button>
+          <Button styling={'button-success'}>
+            {isLoggingIn ? 'Log In' : 'Sign Up'}
+          </Button>
+          {authMessage}
+          {authError && authError}
         </form>
       </div>
     </div>

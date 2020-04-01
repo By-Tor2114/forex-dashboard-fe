@@ -3,6 +3,9 @@
   height: 100vh;
 }
 
+.Backdrop {
+}
+
 /* GLOBAL CLASSES */
 
 button {
@@ -17,4 +20,35 @@ button {
   border-radius: 5px;
   width: 100%;
   padding: 10px;
+}
+
+.span-highlight {
+  color: rgb(83, 128, 251);
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #f4f4f410;
+  border-radius: 5px;
+  padding: 4px 10px;
+}
+
+.warning {
+  color: rgb(255, 75, 75);
+  background-color: #f4f4f410;
+  border-radius: 5px;
+  padding: 4px 10px;
+}
+
+.nav-button {
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #3387c4 2%, #125184 100%);
+}
+
+.nav-button:hover {
+  background: #093961;
+}
+
+.logout:hover {
+  background: rgb(102, 12, 12);
 }
