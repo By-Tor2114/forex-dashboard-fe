@@ -21,7 +21,7 @@ const Navbar = ({ logout }) => {
       </ul>
       <ul>
         <li className="nav-button" onClick={modalToggler}>
-          Profile
+          Update Profile
         </li>
         <li className="nav-button logout" onClick={logout}>
           Log Out

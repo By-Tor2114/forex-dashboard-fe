@@ -22,7 +22,8 @@ const Modal = ({ toggle }) => {
   const onSubmitHandler = async event => {
     event.preventDefault();
 
-    const response = await updateUser(profileUpdate);
+    const response = await updateUser(profileUpdate, context.token);
+    console.log(response, '<==== result');
   };
 
   return (
