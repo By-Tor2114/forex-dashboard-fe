@@ -61,14 +61,12 @@ const Auth = ({ accountInit }) => {
           <FormInput
             type={'email'}
             name={'Email'}
-            placeholder={'your@email.com'}
             changeHandler={onChangeHandler}
             required={true}
           />
           <FormInput
             type={'password'}
             name={'Password'}
-            placeholder={'Password'}
             changeHandler={onChangeHandler}
             required={true}
           />
