@@ -55,7 +55,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <AppProvider value={token}>{routes}</AppProvider>
+      <AppProvider value={{ token, initialiseAccount }}>{routes}</AppProvider>
     </div>
   );
 };

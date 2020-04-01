@@ -9,7 +9,9 @@ import './Modal.css';
 
 const Modal = ({ toggle }) => {
   const context = useContext(AppContext);
-  const { firstName, lastName, accountBalance, email } = context.token;
+
+  const { firstName, lastName, accountBalance, email } = context.token.token;
+  const { initialiseAccount } = context;
 
   const [profileUpdate, setProfileUpdate] = useState({ update: {} });
 
@@ -22,8 +24,10 @@ const Modal = ({ toggle }) => {
   const onSubmitHandler = async event => {
     event.preventDefault();
 
-    const response = await updateUser(profileUpdate, context.token);
+    const response = await updateUser(profileUpdate, context.token.token);
     console.log(response, '<==== result');
+
+    initialiseAccount(response);
   };
 
   return (
