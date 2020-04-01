@@ -20,6 +20,26 @@ button {
   border-radius: 5px;
   width: 100%;
   padding: 10px;
+  cursor: pointer;
+}
+
+.button-success:hover {
+  background: rgb(9, 121, 27);
+}
+
+.button-cancel {
+  color: white;
+  background: rgb(143, 101, 2);
+  font-size: 28px;
+  margin: 15px 0;
+  border-radius: 5px;
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.button-cancel:hover {
+  background: rgb(107, 77, 7);
 }
 
 .span-highlight {

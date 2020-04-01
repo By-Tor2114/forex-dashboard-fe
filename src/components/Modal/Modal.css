@@ -2,10 +2,9 @@
   position: absolute;
   background-color: #f4f4f410;
   top: 20%;
-  bottom: 20%;
+  bottom: 5%;
   left: 15%;
   right: 15%;
   border-radius: 5px;
   padding: 20px;
-  /* padding-left: 20px; */
 }

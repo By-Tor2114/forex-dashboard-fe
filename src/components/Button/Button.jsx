@@ -1,9 +1,11 @@
 import React from 'react';
 
-const Button = ({ children, styling }) => {
+const Button = ({ children, styling, toggle }) => {
   return (
     <div className="Button">
-      <button className={styling}>{children}</button>
+      <button onClick={toggle} className={styling}>
+        {children}
+      </button>
     </div>
   );
 };
