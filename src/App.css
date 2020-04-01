@@ -42,15 +42,6 @@ button {
   background: rgb(107, 77, 7);
 }
 
-.span-highlight {
-  color: rgb(83, 128, 251);
-  cursor: pointer;
-  font-weight: bold;
-  background-color: #f4f4f410;
-  border-radius: 5px;
-  padding: 4px 10px;
-}
-
 .warning {
   color: rgb(255, 75, 75);
   background-color: #f4f4f410;
@@ -71,4 +62,17 @@ button {
 
 .logout:hover {
   background: rgb(102, 12, 12);
+}
+
+.span-highlight {
+  color: rgb(83, 128, 251);
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #f4f4f410;
+  border-radius: 5px;
+  padding: 4px 10px;
+}
+
+.span-green {
+  color: rgb(0, 187, 31);
 }

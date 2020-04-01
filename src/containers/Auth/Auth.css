@@ -1,6 +1,6 @@
 .Auth-Overlay {
   position: absolute;
-  background-image: url(../images/fx-background.png);
+  background-image: url(../../images/fx-background.png);
   background-position: center;
   background-size: cover;
   top: 0;
@@ -23,4 +23,8 @@
   width: 300px;
   margin: 0 auto;
   border-radius: 5px;
+}
+
+.Auth h1 {
+  /* margin-bottom: 50px; */
 }

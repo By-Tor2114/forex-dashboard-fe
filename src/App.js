@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 
-import Auth from './containers/Auth';
+import Auth from './containers/Auth/Auth';
 import Navbar from './components/Navbar/Navbar';
 import { AppProvider } from './context/context';
 import './App.css';

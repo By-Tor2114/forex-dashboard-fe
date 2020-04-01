@@ -3,7 +3,7 @@ import React from 'react';
 import './FormInput.css';
 
 const FormInput = ({
-  children,
+  id,
   type,
   name,
   changeHandler,
@@ -14,7 +14,7 @@ const FormInput = ({
     <div className="FormInput">
       <label htmlFor={name}>{name}</label>
       <input
-        id={name}
+        id={id}
         name={name}
         type={type}
         placeholder={placeholder}
