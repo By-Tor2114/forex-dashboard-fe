@@ -2,9 +2,7 @@ import axios from 'axios';
 
 const BASE_URL = require('./axios');
 
-const updateUser = async ({ update }, token) => {
-  console.log(update);
-
+const updateUser = async ({ update }, auth) => {
   try {
     const { data } = await axios.patch(
       `${BASE_URL}/users/update`,
@@ -12,7 +10,7 @@ const updateUser = async ({ update }, token) => {
         update
       },
       {
-        headers: { token: token.token }
+        headers: { token: auth.token }
       }
     );
     return data;

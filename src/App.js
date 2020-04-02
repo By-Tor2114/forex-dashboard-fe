@@ -5,6 +5,7 @@ import Auth from './containers/Auth/Auth';
 import Navbar from './components/Navbar/Navbar';
 import { AppProvider } from './context/context';
 import './App.css';
+import TradeHistory from './containers/TradeHistory/TradeHistory';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -35,6 +36,7 @@ const App = () => {
     routes = (
       <BrowserRouter>
         <Navbar logout={logoutHandler} />
+        <TradeHistory token={token.user.token} />
         <Switch></Switch>
       </BrowserRouter>
     );
