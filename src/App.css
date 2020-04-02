@@ -30,15 +30,24 @@ button {
   cursor: pointer;
 }
 
+.button-success:hover {
+  background: rgb(9, 121, 27);
+}
+
 .view-trade {
+  color: #d1caca;
   cursor: pointer;
   width: 91%;
   border-radius: 5px;
   background: linear-gradient(to bottom, #474e53 2%, #125184 100%);
 }
 
-.button-success:hover {
-  background: rgb(9, 121, 27);
+.hide-list {
+  color: #e7d5d5;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #474e53 2%, #125184 100%);
 }
 
 .button-greyed-out {
@@ -166,6 +175,26 @@ button {
 
 .ml-5 {
   margin-left: 3rem;
+}
+
+.mr-1 {
+  margin-right: 1rem;
+}
+
+.mr-2 {
+  margin-right: 1.5rem;
+}
+
+.mr-3 {
+  margin-right: 2rem;
+}
+
+.mr-4 {
+  margin-right: 2.5rem;
+}
+
+.mr-5 {
+  margin-right: 3rem;
 }
 
 .m-05 {

@@ -10,7 +10,8 @@
 
 .TradeHistory .history-balance {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .TradeHistory ul {
@@ -43,32 +44,17 @@
   padding: 4px;
 }
 
-/* .TradeHistory ul .loser {
-  background-color: rgba(126, 42, 42, 0.726);
-  width: 97%;
-  border-radius: 5px;
-  margin: 5px auto;
-}
-
-.TradeHistory ul .winner {
-  background-color: rgba(55, 126, 42, 0.726);
-  width: 97%;
-  border-radius: 5px;
-  margin: 5px auto;
-} */
-
-.test {
+.trade-list {
   background-color: rgba(126, 126, 126, 0.507);
   margin: 2px;
   border-radius: 5px;
-  color: white;
 }
 
 .TradeHistory ul .loser {
-  background-color: rgba(126, 42, 42, 0.726);
-  color: rgb(194, 194, 194);
+  background-color: rgba(170, 63, 63, 0.671);
+  color: black;
   margin: 5px 3px;
-  padding: 0 2px;
+  padding: 0 5.5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,16 +62,35 @@
 
 .TradeHistory ul .winner {
   background-color: rgba(55, 126, 42, 0.726);
-  color: rgb(194, 194, 194);
+  color: black;
   margin: 5px 3px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 5px;
+  padding: 0 5.5px;
 }
 
 @media only screen and (min-width: 600px) {
   .TradeHistory ul {
     width: 60%;
+  }
+
+  .TradeHistory .history-head {
+    justify-content: space-between;
+    width: 65%;
+    margin: 0 auto;
+  }
+
+  .TradeHistory .history-balance {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  .TradeHistory ul .winner {
+    padding: 0 10px;
+  }
+
+  .TradeHistory ul .loser {
+    padding: 0 10px;
   }
 }
