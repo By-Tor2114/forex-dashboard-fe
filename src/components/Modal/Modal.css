@@ -1,8 +1,8 @@
 .Modal {
   position: absolute;
-  background-color: #f4f4f410;
-  top: 20%;
-  bottom: 5%;
+  background-color: #000000;
+  top: 15%;
+  bottom: 10%;
   left: 15%;
   right: 15%;
   border-radius: 5px;

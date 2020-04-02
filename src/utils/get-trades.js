@@ -10,6 +10,8 @@ const getTrades = async token => {
     });
     return data;
   } catch (error) {
+    console.log(error);
+
     return error.response.data.message;
   }
 };

@@ -1,2 +1,59 @@
 .TradeHistory {
+  color: #f4f4f4;
+}
+
+.TradeHistory .history-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.TradeHistory ul {
+  list-style: none;
+  padding-left: 0;
+  max-width: 95%;
+  max-height: 400px;
+  margin: 0 auto;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  overflow-y: scroll;
+}
+
+.TradeHistory ul li {
+  color: black;
+  display: flex;
+  justify-content: center;
+}
+
+.TradeHistory ul li div {
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid black;
+  height: 70px;
+  display: flex;
+}
+
+.TradeHistory ul li p {
+  margin: 2px 0;
+  padding: 4px;
+}
+
+.TradeHistory ul .loser {
+  background-color: rgba(126, 42, 42, 0.726);
+  width: 97%;
+  border-radius: 5px;
+  margin: 5px auto;
+}
+
+.TradeHistory ul .winner {
+  background-color: rgba(55, 126, 42, 0.726);
+  width: 97%;
+  border-radius: 5px;
+  margin: 5px auto;
+}
+
+@media only screen and (min-width: 600px) {
+  .TradeHistory ul {
+    width: 50%;
+  }
 }

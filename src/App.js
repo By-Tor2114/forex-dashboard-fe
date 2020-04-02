@@ -13,8 +13,8 @@ const App = () => {
 
   const initialiseAccount = token => {
     localStorage.setItem('token', JSON.stringify(token));
-    setIsLoggedIn(true);
     setToken(token);
+    setIsLoggedIn(true);
   };
 
   const logoutHandler = () => {
