@@ -17,10 +17,10 @@ const Auth = ({ accountInit }) => {
   };
 
   const loginToggler = () => {
+    setAuth(null);
     setIsLoggingIn(!isLoggingIn);
     setPath(!isLoggingIn ? 'login' : 'signup');
     setAuthError(null);
-    setAuth(null);
   };
 
   const onSubmitHandler = async event => {
