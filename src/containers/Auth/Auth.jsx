@@ -28,7 +28,7 @@ const Auth = ({ accountInit }) => {
 
     const response = await authHandler(auth, path);
 
-    if (response.token) {
+    if (response.user) {
       accountInit(response);
     } else {
       setAuthError(<p className="warning">{response}</p>);

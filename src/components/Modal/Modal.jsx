@@ -10,25 +10,60 @@ import './Modal.css';
 const Modal = ({ toggle }) => {
   const context = useContext(AppContext);
 
-  const { firstName, lastName, accountBalance, email } = context.token.token;
+  const { firstName, lastName, accountBalance, email } = context.token.user;
   const { initialiseAccount } = context;
 
   const [profileUpdate, setProfileUpdate] = useState({ update: {} });
+  const [disableButton, setDisableButton] = useState(true);
+  const [updateMessage, setUpdateMessage] = useState(false);
+
+  const formChecker = updates => {
+    const checked = Object.values(updates).find(elem => elem.length > 0);
+
+    setUpdateMessage(false);
+
+    return checked === undefined
+      ? setDisableButton(true)
+      : setDisableButton(false);
+  };
 
   const onChangeHandler = event => {
     setProfileUpdate({
       update: { ...profileUpdate.update, [event.target.id]: event.target.value }
+    });
+
+    formChecker({
+      ...profileUpdate.update,
+      [event.target.id]: event.target.value
     });
   };
 
   const onSubmitHandler = async event => {
     event.preventDefault();
 
-    const response = await updateUser(profileUpdate, context.token.token);
-    console.log(response, '<==== result');
+    const response = await updateUser(profileUpdate, context.token.user);
 
     initialiseAccount(response);
+
+    if (response) {
+      setUpdateMessage(true);
+    }
   };
+
+  let saveChanges;
+
+  if (updateMessage) {
+    saveChanges = <p>Updates saved sucessfully</p>;
+  } else {
+    saveChanges = (
+      <Button
+        disableBool={disableButton ? true : false}
+        styling={disableButton ? 'button-greyed-out' : 'button-success'}
+      >
+        Save Changes
+      </Button>
+    );
+  }
 
   return (
     <div className="Modal">
@@ -57,18 +92,7 @@ const Modal = ({ toggle }) => {
           name={'Account Balance'}
           placeholder={accountBalance}
         />
-        <Button
-          disableBool={
-            Object.keys(profileUpdate.update).length === 0 ? true : false
-          }
-          styling={
-            Object.keys(profileUpdate.update).length === 0
-              ? 'button-greyed-out'
-              : 'button-success'
-          }
-        >
-          Save Changes
-        </Button>
+        {saveChanges}
         <Button toggle={toggle} styling={'button-cancel'}>
           Close Profile
         </Button>
