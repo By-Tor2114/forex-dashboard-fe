@@ -26,7 +26,7 @@ const TradeHistory = ({ token, user }) => {
     let balance = user.accountBalance;
 
     trades.forEach(trade => {
-      trade.outcome == 'winner'
+      trade.outcome === 'Winner'
         ? (balance += trade.profitLoss)
         : (balance -= trade.profitLoss);
     });
