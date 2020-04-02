@@ -30,6 +30,13 @@ button {
   cursor: pointer;
 }
 
+.view-trade {
+  cursor: pointer;
+  width: 91%;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #474e53 2%, #125184 100%);
+}
+
 .button-success:hover {
   background: rgb(9, 121, 27);
 }
@@ -95,6 +102,28 @@ button {
 
 .span-green {
   color: rgb(0, 187, 31);
+}
+
+/* Font Sizes */
+
+.font-size-1 {
+  font-size: 1rem;
+}
+
+.font-size-2 {
+  font-size: 1.5rem;
+}
+
+.font-size-3 {
+  font-size: 2rem;
+}
+
+.font-size-4 {
+  font-size: 2.5rem;
+}
+
+.font-size-5 {
+  font-size: 3rem;
 }
 
 /* Generic margin */
@@ -193,26 +222,4 @@ button {
 }
 .mb-5 {
   margin-bottom: 5rem;
-}
-
-/* Font Sizes */
-
-.font-size-1 {
-  font-size: 1rem;
-}
-
-.font-size-2 {
-  font-size: 1.5rem;
-}
-
-.font-size-3 {
-  font-size: 2rem;
-}
-
-.font-size-4 {
-  font-size: 2.5rem;
-}
-
-.font-size-5 {
-  font-size: 3rem;
 }
