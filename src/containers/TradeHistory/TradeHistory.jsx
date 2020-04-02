@@ -14,6 +14,8 @@ const TradeHistory = ({ token, user }) => {
     const fetchTrades = async () => {
       const { trades } = await getTrades(token);
 
+      trades.sort((a, b) => new Date(a.dateOpened) - new Date(b.dateOpened));
+
       setTrades(trades);
       balanceCalc(trades);
     };
