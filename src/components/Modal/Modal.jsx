@@ -53,7 +53,9 @@ const Modal = ({ toggle }) => {
   let saveChanges;
 
   if (updateMessage) {
-    saveChanges = <p>Updates saved sucessfully</p>;
+    saveChanges = (
+      <p className="span-green font-size-2">Updates saved sucessfully</p>
+    );
   } else {
     saveChanges = (
       <Button
