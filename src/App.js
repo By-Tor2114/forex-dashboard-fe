@@ -36,7 +36,7 @@ const App = () => {
     routes = (
       <BrowserRouter>
         <Navbar logout={logoutHandler} />
-        <TradeHistory token={token.user.token} />
+        <TradeHistory token={token.user.token} user={token.user} />
         <Switch></Switch>
       </BrowserRouter>
     );

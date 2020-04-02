@@ -5,7 +5,7 @@ import './TradeHistory.css';
 
 const { getTrades } = require('../../utils/get-trades');
 
-const TradeHistory = ({ token }) => {
+const TradeHistory = ({ token, user }) => {
   const [trades, setTrades] = useState([1, 2]);
 
   useEffect(() => {
@@ -20,8 +20,14 @@ const TradeHistory = ({ token }) => {
   return (
     <div className="TradeHistory">
       <div className="history-head">
-        <h2 className="m-1">Trade History</h2>
+        <h2 className="m-1">
+          Trade Hi<span className="span-green">$</span>tory
+        </h2>
         <Button styling="button-add m-1">Add Trade</Button>
+      </div>
+
+      <div className="history-balance ml-1">
+        <p>Account Balance: {user.accountBalance} </p>
       </div>
       <ul>
         {trades.map((trade, index) => (
