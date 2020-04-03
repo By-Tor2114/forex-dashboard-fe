@@ -102,6 +102,8 @@ const TradeHistory = ({ token, user }) => {
         ))}
         {showAddTradeModal && (
           <AddEditTradeModal
+            updateTrades={updateTrades}
+            setUpdateTrades={setUpdateTrades}
             toggle={addTradeModalToggler}
             trade={singleTrade}
             method={method}
