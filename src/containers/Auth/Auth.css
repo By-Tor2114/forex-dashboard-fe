@@ -17,10 +17,12 @@
   flex-direction: column;
   justify-content: center;
   overflow-y: scroll;
+  height: 100%;
 }
 
 .Auth form {
   width: 300px;
   margin: 0 auto;
   border-radius: 5px;
+  /* overflow-y: scroll; */
 }
