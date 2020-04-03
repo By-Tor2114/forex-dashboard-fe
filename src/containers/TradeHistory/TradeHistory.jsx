@@ -104,11 +104,11 @@ const TradeHistory = ({ token, user }) => {
                 View Trade
               </p>
             </div>
-            {showViewTradeModal && (
-              <AddEditTradeModal trade={singleTrade} method={method} />
-            )}
           </li>
         ))}
+        {showViewTradeModal && (
+          <AddEditTradeModal trade={singleTrade} method={method} />
+        )}
       </ul>
     );
   } else {
