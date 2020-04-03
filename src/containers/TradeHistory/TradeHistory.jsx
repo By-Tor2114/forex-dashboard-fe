@@ -2,16 +2,26 @@ import React, { useState, useEffect } from 'react';
 
 import Button from '../../components/Button/Button';
 import './TradeHistory.css';
-import AddTradeModal from '../../components/AddTradeModal/AddTradeModal';
+import AddEditTradeModal from '../../components/AddEditTradeModal/AddEditTradeModal';
 
 const { getTrades } = require('../../utils/get-trades');
 
 const TradeHistory = ({ token, user }) => {
+  // Initial trades and running balance
   const [trades, setTrades] = useState([]);
   const [balance, setBalance] = useState(0);
+
+  // Show trade list, add trade modal and refreshes trade list
   const [showTrades, setShowTrades] = useState(true);
   const [showAddTradeModal, setShowAddTradeModal] = useState(false);
   const [updateTrades, setUpdateTrades] = useState(false);
+
+  // Show view trade modal and ssts individual trade for modal
+  const [showViewTradeModal, setShowViewTradeModal] = useState(false);
+  const [singleTrade, setSingleTrade] = useState({});
+
+  // Sets whether posting or patching a trade
+  const [method, setMethod] = useState('');
 
   useEffect(() => {
     const fetchTrades = async () => {
@@ -52,10 +62,17 @@ const TradeHistory = ({ token, user }) => {
     setShowTrades(!showTrades);
   };
 
-  const modalToggle = event => {
+  const addTradeModalToggler = event => {
     event.preventDefault();
-
+    setMethod('POST');
     setShowAddTradeModal(!showAddTradeModal);
+  };
+
+  const viewTradeModalToggler = (event, trade) => {
+    event.preventDefault();
+    setMethod('PATCH');
+    setSingleTrade(trade);
+    setShowViewTradeModal(!showViewTradeModal);
   };
 
   let list;
@@ -80,8 +97,16 @@ const TradeHistory = ({ token, user }) => {
                 {trade.outcome === 'Winner' ? 'Profit' : 'Loss'}:{' '}
                 {trade.profitLoss || 'N/A'}
               </p>
-              <p className="view-trade">View Trade</p>
+              <p
+                onClick={event => viewTradeModalToggler(event, trade)}
+                className="view-trade"
+              >
+                View Trade
+              </p>
             </div>
+            {showViewTradeModal && (
+              <AddEditTradeModal trade={singleTrade} method={method} />
+            )}
           </li>
         ))}
       </ul>
@@ -96,7 +121,7 @@ const TradeHistory = ({ token, user }) => {
         <h2 className="m-1">
           Trade Hi<span className="span-green">$</span>tory
         </h2>
-        <Button toggle={modalToggle} styling="button-add m-1">
+        <Button toggle={addTradeModalToggler} styling="button-add m-1">
           Add Trade
         </Button>
       </div>
@@ -110,10 +135,11 @@ const TradeHistory = ({ token, user }) => {
       {list}
 
       {showAddTradeModal && (
-        <AddTradeModal
+        <AddEditTradeModal
+          method={method}
           updateTrades={updateTrades}
           setUpdateTrades={setUpdateTrades}
-          toggle={modalToggle}
+          toggle={addTradeModalToggler}
         />
       )}
     </div>

@@ -3,15 +3,22 @@ import React, { useState, useContext } from 'react';
 import FormInput from '../FormInput/FormInput';
 import AppContext from '../../context/context';
 import { addTrade } from '../../utils/add-trade';
-import './AddTradeModal.css';
+import './AddEditTradeModal.css';
 import Button from '../Button/Button';
 
-const AddTradeModal = ({ toggle, updateTrades, setUpdateTrades }) => {
+const AddEditTradeModal = ({
+  toggle,
+  updateTrades,
+  setUpdateTrades,
+  method
+}) => {
   const context = useContext(AppContext);
 
   const [postTrade, setPostTrade] = useState({});
   const [disableButton, setDisableButton] = useState(true);
   const [updateMessage, setUpdateMessage] = useState(false);
+
+  console.log(method);
 
   const onChangeHandler = event => {
     setPostTrade({
@@ -65,7 +72,7 @@ const AddTradeModal = ({ toggle, updateTrades, setUpdateTrades }) => {
   }
 
   return (
-    <div className="AddTradeModal">
+    <div className="AddEditTradeModal">
       <form onSubmit={onSubmitHandler}>
         <FormInput
           changeHandler={onChangeHandler}
@@ -153,4 +160,4 @@ const AddTradeModal = ({ toggle, updateTrades, setUpdateTrades }) => {
   );
 };
 
-export default AddTradeModal;
+export default AddEditTradeModal;
