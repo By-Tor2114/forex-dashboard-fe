@@ -39,7 +39,7 @@ const addEditDeleteTrade = async (update, auth, method, _id) => {
     }
   } else {
     try {
-      const message = await axios.delete(`${BASE_URL}/trades`, {
+      const { data } = await axios.delete(`${BASE_URL}/trades`, {
         headers: {
           token: auth
         },
@@ -47,9 +47,8 @@ const addEditDeleteTrade = async (update, auth, method, _id) => {
           _id
         }
       });
-      console.log(message);
 
-      return message;
+      return data.message;
     } catch (error) {
       console.log(error.response.data.message);
 
