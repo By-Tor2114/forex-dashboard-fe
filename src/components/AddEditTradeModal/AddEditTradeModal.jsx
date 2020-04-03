@@ -75,7 +75,11 @@ const AddEditTradeModal = ({
 
   if (updateMessage) {
     saveChanges = (
-      <p className="span-green font-size-2">Trade added sucessfully</p>
+      <p className="span-green font-size-2">
+        {trade.outcome
+          ? 'Trade updated successfully'
+          : 'Trade added sucessfully'}
+      </p>
     );
   } else {
     saveChanges = (

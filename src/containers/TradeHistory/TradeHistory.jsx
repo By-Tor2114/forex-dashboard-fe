@@ -141,7 +141,7 @@ const TradeHistory = ({ token, user }) => {
           trade={singleTrade}
           updateTrades={updateTrades}
           setUpdateTrades={setUpdateTrades}
-          toggle={addTradeModalToggler}
+          toggle={viewTradeModalToggler}
         />
       )}
     </div>
