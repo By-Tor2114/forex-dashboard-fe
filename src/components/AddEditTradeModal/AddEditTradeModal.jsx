@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 
 import FormInput from '../FormInput/FormInput';
 import AppContext from '../../context/context';
-import { addEditTrade } from '../../utils/add-edit-trade';
+import { addEditDeleteTrade } from '../../utils/add-edit-delete-trade';
 import Button from '../Button/Button';
 import './AddEditTradeModal.css';
 
@@ -52,9 +52,12 @@ const AddEditTradeModal = ({
   };
 
   const onSubmitHandler = async event => {
+    const deleteEvent = event.target.textContent.split(' ')[0];
+    console.log(deleteEvent);
+
     event.preventDefault();
 
-    const response = await addEditTrade(
+    const response = await addEditDeleteTrade(
       postTrade,
       context.token.user.token,
       method,
@@ -69,6 +72,21 @@ const AddEditTradeModal = ({
     }
 
     setPostTrade({});
+  };
+
+  const deleteTradeHandler = async event => {
+    event.preventDefault();
+    const deleted = await addEditDeleteTrade(
+      null,
+      context.token.user.token,
+      'DELETE',
+      _id
+    );
+    console.log(deleted);
+
+    if (deleted) {
+      setUpdateTrades(!updateTrades);
+    }
   };
 
   let saveChanges;
@@ -99,6 +117,11 @@ const AddEditTradeModal = ({
           <h2 className="trade-modal-header">View/Edit Trade</h2>
         ) : (
           <h2 className="trade-modal-header">Add Trade</h2>
+        )}
+        {trade.outcome && (
+          <Button toggle={deleteTradeHandler} styling="button-delete">
+            Delete Trade
+          </Button>
         )}
         <FormInput
           changeHandler={onChangeHandler}
@@ -136,9 +159,11 @@ const AddEditTradeModal = ({
           type="select"
           name="Trade Direction (required)"
           options={
-            tradeDirection === 'Buy'
-              ? [tradeDirection, 'Sell']
-              : [tradeDirection, 'Buy'] || ['', 'Buy', 'Sell']
+            tradeDirection !== undefined
+              ? tradeDirection === 'Buy'
+                ? [tradeDirection, 'Sell']
+                : [tradeDirection, 'Buy']
+              : ['', 'Buy', 'Sell']
           }
           required={!trade.outcome && true}
         />

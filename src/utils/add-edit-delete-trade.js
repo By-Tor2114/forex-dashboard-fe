@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const BASE_URL = require('./axios');
 
-const addEditTrade = async (update, auth, method, _id) => {
-  // console.log(update, auth, method, 'addEditTrade');
+const addEditDeleteTrade = async (update, auth, method, _id) => {
+  console.log(auth);
 
   if (method === 'PATCH') {
     try {
@@ -17,13 +17,12 @@ const addEditTrade = async (update, auth, method, _id) => {
           headers: { token: auth }
         }
       );
-      console.log(data, 'patching');
 
       return data;
     } catch (error) {
       return error.response.data.message;
     }
-  } else {
+  } else if (method === 'POST') {
     try {
       const { data } = await axios.post(
         `${BASE_URL}/trades`,
@@ -38,7 +37,25 @@ const addEditTrade = async (update, auth, method, _id) => {
     } catch (error) {
       return error.response.data.message;
     }
+  } else {
+    try {
+      const message = await axios.delete(`${BASE_URL}/trades`, {
+        headers: {
+          token: auth
+        },
+        data: {
+          _id
+        }
+      });
+      console.log(message);
+
+      return message;
+    } catch (error) {
+      console.log(error.response.data.message);
+
+      return error.response.data.message;
+    }
   }
 };
 
-export { addEditTrade };
+export { addEditDeleteTrade };

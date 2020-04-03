@@ -10,6 +10,16 @@ button {
   border: none;
 }
 
+.button-delete {
+  color: black;
+  font-weight: 600;
+  background: rgb(184, 75, 75);
+  font-size: 18px;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
 .button-add {
   color: white;
   background: rgb(2, 143, 25);
