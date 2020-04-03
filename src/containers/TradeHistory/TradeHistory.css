@@ -52,7 +52,7 @@
 
 .TradeHistory ul .loser {
   background-color: rgba(170, 63, 63, 0.671);
-  color: black;
+  color: white;
   margin: 5px 3px;
   padding: 0 5px;
   display: flex;
@@ -62,7 +62,7 @@
 
 .TradeHistory ul .winner {
   background-color: rgba(55, 126, 42, 0.726);
-  color: black;
+  color: white;
   margin: 5px 3px;
   display: flex;
   flex-direction: column;

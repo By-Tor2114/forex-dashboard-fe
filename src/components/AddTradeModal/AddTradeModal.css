@@ -1,0 +1,12 @@
+.AddTradeModal {
+  color: white;
+  position: absolute;
+  background-color: #000000;
+  top: 15%;
+  bottom: 10%;
+  left: 15%;
+  right: 15%;
+  border-radius: 5px;
+  padding: 20px;
+  overflow-y: scroll;
+}

@@ -74,28 +74,32 @@ const Modal = ({ toggle }) => {
           id="firstName"
           changeHandler={onChangeHandler}
           name={'First Name'}
+          type="text"
           placeholder={firstName}
         />
         <FormInput
           id="lastName"
           changeHandler={onChangeHandler}
           name={'Last Name'}
+          type="text"
           placeholder={lastName}
         />
         <FormInput
           id="email"
           changeHandler={onChangeHandler}
           name={'E-mail'}
+          type="email"
           placeholder={email}
         />
         <FormInput
           id="accountBalance"
           changeHandler={onChangeHandler}
           name={'Account Balance'}
+          type="number"
           placeholder={accountBalance}
         />
         {saveChanges}
-        <Button toggle={toggle} styling={'button-cancel'}>
+        <Button toggle={toggle} styling="button-cancel">
           Close Profile
         </Button>
       </form>

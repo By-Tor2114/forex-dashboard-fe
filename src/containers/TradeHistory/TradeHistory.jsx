@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Button from '../../components/Button/Button';
 import './TradeHistory.css';
+import AddTradeModal from '../../components/AddTradeModal/AddTradeModal';
 
 const { getTrades } = require('../../utils/get-trades');
 
@@ -9,6 +10,7 @@ const TradeHistory = ({ token, user }) => {
   const [trades, setTrades] = useState([]);
   const [balance, setBalance] = useState(0);
   const [showTrades, setShowTrades] = useState(true);
+  const [showAddTradeModal, setShowAddTradeModal] = useState(true);
 
   useEffect(() => {
     const fetchTrades = async () => {
@@ -49,6 +51,12 @@ const TradeHistory = ({ token, user }) => {
     setShowTrades(!showTrades);
   };
 
+  const modalToggle = event => {
+    event.preventDefault();
+
+    setShowAddTradeModal(!showAddTradeModal);
+  };
+
   let list;
 
   if (showTrades) {
@@ -87,7 +95,9 @@ const TradeHistory = ({ token, user }) => {
         <h2 className="m-1">
           Trade Hi<span className="span-green">$</span>tory
         </h2>
-        <Button styling="button-add m-1">Add Trade</Button>
+        <Button toggle={modalToggle} styling="button-add m-1">
+          Add Trade
+        </Button>
       </div>
 
       <div className="history-balance ml-1 mr-1">
@@ -96,8 +106,9 @@ const TradeHistory = ({ token, user }) => {
           {showTrades ? 'Hide' : 'Show'} Trade List
         </Button>
       </div>
-
       {list}
+
+      {showAddTradeModal && <AddTradeModal toggle={modalToggle} />}
     </div>
   );
 };
