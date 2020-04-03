@@ -17,7 +17,6 @@
   flex-direction: column;
   justify-content: center;
   overflow-y: scroll;
-  height: 100%;
 }
 
 .Auth form {
