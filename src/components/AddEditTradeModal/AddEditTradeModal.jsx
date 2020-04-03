@@ -3,8 +3,10 @@ import React, { useState, useContext } from 'react';
 import FormInput from '../FormInput/FormInput';
 import AppContext from '../../context/context';
 import { addEditTrade } from '../../utils/add-edit-trade';
-import './AddEditTradeModal.css';
 import Button from '../Button/Button';
+import './AddEditTradeModal.css';
+
+const { dateFormatter } = require('../../utils/helper-funcs');
 
 const AddEditTradeModal = ({
   toggle,
@@ -14,6 +16,18 @@ const AddEditTradeModal = ({
   trade
 }) => {
   const context = useContext(AppContext);
+  const {
+    currencyPair,
+    outcome,
+    profitLoss,
+    swap,
+    commission,
+    dateOpened,
+    dateClosed,
+    tradeId,
+    tradeNotes,
+    tradeDirection
+  } = trade;
 
   const [postTrade, setPostTrade] = useState({});
   const [disableButton, setDisableButton] = useState(true);
@@ -71,7 +85,7 @@ const AddEditTradeModal = ({
         disableBool={disableButton ? true : false}
         styling={disableButton ? 'button-greyed-out' : 'button-success'}
       >
-        Add Trade
+        {trade.outcome ? 'Update Trade' : 'Add Trade'}
       </Button>
     );
   }
@@ -79,20 +93,29 @@ const AddEditTradeModal = ({
   return (
     <div className="AddEditTradeModal">
       <form onSubmit={onSubmitHandler}>
+        {outcome ? (
+          <h2 className="trade-modal-header">View/Edit Trade</h2>
+        ) : (
+          <h2 className="trade-modal-header">Add Trade</h2>
+        )}
         <FormInput
           changeHandler={onChangeHandler}
           id="currencyPair"
           type="text"
           name="Currency Pair (required)"
-          placeholder="example: EUR/USD"
+          placeholder={currencyPair || 'example: EUR/USD'}
           required={true}
         />
         <FormInput
           changeHandler={onChangeHandler}
           id="outcome"
           type="select"
-          name="Outcome (required)"
-          options={['', 'Winner', 'Loser']}
+          name={'Outcome (required)'}
+          options={
+            outcome === 'Winner'
+              ? [outcome, 'Loser']
+              : [outcome, 'Winner'] || ['', 'Winner', 'Loser']
+          }
           required={true}
         />
         <FormInput
@@ -100,7 +123,7 @@ const AddEditTradeModal = ({
           id="profitLoss"
           type="number"
           name="Profit/Loss (required)"
-          placeholder="{exclude swap/commission}"
+          placeholder={profitLoss || '{exclude swap/commission}'}
           required={true}
         />
         <FormInput
@@ -108,7 +131,11 @@ const AddEditTradeModal = ({
           id="tradeDirection"
           type="select"
           name="Trade Direction (required)"
-          options={['', 'Buy', 'Sell']}
+          options={
+            tradeDirection === 'Buy'
+              ? [tradeDirection, 'Sell']
+              : [tradeDirection, 'Buy'] || ['', 'Buy', 'Sell']
+          }
           required={true}
         />
         <FormInput
@@ -116,7 +143,7 @@ const AddEditTradeModal = ({
           id="swap"
           type="number"
           name="Swap (optional)"
-          placeholder="example: 22.50"
+          placeholder={swap || 'example: 22.50'}
           required={false}
         />
         <FormInput
@@ -124,7 +151,7 @@ const AddEditTradeModal = ({
           id="commission"
           type="number"
           name="Commission (optional)"
-          placeholder="example: 15.73"
+          placeholder={commission || 'example: 15.73'}
           required={false}
         />{' '}
         <FormInput
@@ -132,13 +159,14 @@ const AddEditTradeModal = ({
           id="tradeId"
           type="text"
           name="Trade Ref (optional)"
-          placeholder="example: r3fer3nce"
+          placeholder={tradeId || 'example: r3fer3nce'}
         />
         <FormInput
           changeHandler={onChangeHandler}
           id="dateOpened"
           type="date"
-          name="Date Opened (required)"
+          name={'Date Opened (required)'}
+          value={dateOpened && dateOpened.slice(0, 10)}
           required={true}
         />
         <FormInput
@@ -147,13 +175,16 @@ const AddEditTradeModal = ({
           type="date"
           name="Date Closed (required)"
           required={true}
+          value={dateClosed && dateClosed.slice(0, 10)}
         />
         <FormInput
           changeHandler={onChangeHandler}
           id="tradeNotes"
           type="textarea"
           name="Trade Notes (optional)"
-          placeholder="Fib retracement trade off daily support"
+          placeholder={
+            tradeNotes || 'example: Fib retracement trade off daily support'
+          }
           required={false}
         />
         {saveChanges}

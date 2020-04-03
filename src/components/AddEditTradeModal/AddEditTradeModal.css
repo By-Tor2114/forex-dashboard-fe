@@ -10,3 +10,7 @@
   padding: 20px;
   overflow-y: scroll;
 }
+
+.AddEditTradeModal .trade-modal-header {
+  color: rgb(108, 138, 206);
+}

@@ -5,6 +5,7 @@ import './TradeHistory.css';
 import AddEditTradeModal from '../../components/AddEditTradeModal/AddEditTradeModal';
 
 const { getTrades } = require('../../utils/get-trades');
+const { dateFormatter } = require('../../utils/helper-funcs');
 
 const TradeHistory = ({ token, user }) => {
   // Initial trades and running balance
@@ -24,6 +25,18 @@ const TradeHistory = ({ token, user }) => {
   const [method, setMethod] = useState('');
 
   useEffect(() => {
+    const balanceCalc = trades => {
+      let balance = user.accountBalance;
+
+      trades.forEach(trade => {
+        trade.outcome === 'Winner'
+          ? (balance += trade.profitLoss)
+          : (balance -= trade.profitLoss);
+      });
+
+      setBalance(balance);
+    };
+
     const fetchTrades = async () => {
       const { trades } = await getTrades(token);
 
@@ -33,29 +46,7 @@ const TradeHistory = ({ token, user }) => {
       balanceCalc(trades);
     };
     fetchTrades();
-  }, [token, updateTrades]);
-
-  const balanceCalc = trades => {
-    let balance = user.accountBalance;
-
-    trades.forEach(trade => {
-      trade.outcome === 'Winner'
-        ? (balance += trade.profitLoss)
-        : (balance -= trade.profitLoss);
-    });
-
-    setBalance(balance);
-  };
-
-  const dateFormatter = date => {
-    return date
-      .toString()
-      .replace(/-/g, '/')
-      .slice(2, 10)
-      .split('/')
-      .reverse()
-      .join('/');
-  };
+  }, [token, updateTrades, user.accountBalance]);
 
   const listToggler = event => {
     event.preventDefault();
@@ -65,6 +56,7 @@ const TradeHistory = ({ token, user }) => {
   const addTradeModalToggler = event => {
     event.preventDefault();
     setMethod('POST');
+    setSingleTrade({});
     setShowViewTradeModal(false);
     setShowAddTradeModal(!showAddTradeModal);
   };

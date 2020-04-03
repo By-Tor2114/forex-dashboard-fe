@@ -10,7 +10,7 @@ const FormInput = ({
   placeholder,
   required,
   options,
-  textarea
+  value
 }) => {
   let inputType;
 
@@ -26,8 +26,8 @@ const FormInput = ({
           required={required}
           onChange={changeHandler}
         >
-          {options.map(option => (
-            <option key={option} value={option}>
+          {options.map((option, index) => (
+            <option key={index} value={option}>
               {option}
             </option>
           ))}
@@ -61,6 +61,7 @@ const FormInput = ({
           placeholder={placeholder}
           required={required}
           onChange={changeHandler}
+          value={value}
         />
       </Fragment>
     );
