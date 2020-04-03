@@ -6,7 +6,7 @@ import { addTrade } from '../../utils/add-trade';
 import './AddTradeModal.css';
 import Button from '../Button/Button';
 
-const AddTradeModal = ({ toggle }) => {
+const AddTradeModal = ({ toggle, updateTrades, setUpdateTrades }) => {
   const context = useContext(AppContext);
 
   const [postTrade, setPostTrade] = useState({});
@@ -41,7 +41,10 @@ const AddTradeModal = ({ toggle }) => {
 
     if (response) {
       setUpdateMessage(true);
+      setUpdateTrades(!updateTrades);
     }
+
+    setPostTrade({});
   };
 
   let saveChanges;

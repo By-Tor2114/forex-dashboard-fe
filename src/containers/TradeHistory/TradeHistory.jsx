@@ -10,7 +10,8 @@ const TradeHistory = ({ token, user }) => {
   const [trades, setTrades] = useState([]);
   const [balance, setBalance] = useState(0);
   const [showTrades, setShowTrades] = useState(true);
-  const [showAddTradeModal, setShowAddTradeModal] = useState(true);
+  const [showAddTradeModal, setShowAddTradeModal] = useState(false);
+  const [updateTrades, setUpdateTrades] = useState(false);
 
   useEffect(() => {
     const fetchTrades = async () => {
@@ -22,7 +23,7 @@ const TradeHistory = ({ token, user }) => {
       balanceCalc(trades);
     };
     fetchTrades();
-  }, [token]);
+  }, [token, updateTrades]);
 
   const balanceCalc = trades => {
     let balance = user.accountBalance;
@@ -108,7 +109,13 @@ const TradeHistory = ({ token, user }) => {
       </div>
       {list}
 
-      {showAddTradeModal && <AddTradeModal toggle={modalToggle} />}
+      {showAddTradeModal && (
+        <AddTradeModal
+          updateTrades={updateTrades}
+          setUpdateTrades={setUpdateTrades}
+          toggle={modalToggle}
+        />
+      )}
     </div>
   );
 };
