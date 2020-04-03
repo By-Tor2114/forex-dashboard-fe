@@ -9,35 +9,57 @@ import Button from '../Button/Button';
 const AddTradeModal = ({ toggle }) => {
   const context = useContext(AppContext);
 
-  const [postTrade, setPostTrade] = useState({ update: {} });
+  const [postTrade, setPostTrade] = useState({});
+  const [disableButton, setDisableButton] = useState(true);
+  const [updateMessage, setUpdateMessage] = useState(false);
 
   const onChangeHandler = event => {
     setPostTrade({
-      update: { ...postTrade.update, [event.target.id]: event.target.value }
+      ...postTrade,
+      [event.target.id]: event.target.value
     });
 
-    formChecker({ ...postTrade.update, [event.target.id]: event.target.value });
+    formChecker({ ...postTrade, [event.target.id]: event.target.value });
   };
 
   const formChecker = updates => {
     const checked = Object.values(updates).find(elem => elem.length > 0);
 
-    // setUpdateMessage(false);
+    setUpdateMessage(false);
 
-    // return checked === undefined
-    //   ? setDisableButton(true)
-    //   : setDisableButton(false);
+    return checked === undefined
+      ? setDisableButton(true)
+      : setDisableButton(false);
   };
 
   const onSubmitHandler = async event => {
     event.preventDefault();
 
-    const response = await addTrade(postTrade, context.token.user);
+    const response = await addTrade(postTrade, context.token.user.token);
 
-    // if (response) {
-    //   setUpdateMessage(true);
-    // }
+    console.log(response, '<==== response');
+
+    if (response) {
+      setUpdateMessage(true);
+    }
   };
+
+  let saveChanges;
+
+  if (updateMessage) {
+    saveChanges = (
+      <p className="span-green font-size-2">Trade added sucessfully</p>
+    );
+  } else {
+    saveChanges = (
+      <Button
+        disableBool={disableButton ? true : false}
+        styling={disableButton ? 'button-greyed-out' : 'button-success'}
+      >
+        Add Trade
+      </Button>
+    );
+  }
 
   return (
     <div className="AddTradeModal">
@@ -108,7 +130,7 @@ const AddTradeModal = ({ toggle }) => {
           changeHandler={onChangeHandler}
           id="dateClosed"
           type="date"
-          name="Date Opened (required)"
+          name="Date Closed (required)"
           required={true}
         />
         <FormInput
@@ -119,6 +141,7 @@ const AddTradeModal = ({ toggle }) => {
           placeholder="Fib retracement trade off daily support"
           required={false}
         />
+        {saveChanges}
         <Button toggle={toggle} styling="button-cancel">
           Close Window
         </Button>

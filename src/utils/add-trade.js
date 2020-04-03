@@ -2,17 +2,17 @@ import axios from 'axios';
 
 const BASE_URL = require('./axios');
 
-const addTrade = async ({ update }, auth) => {
-  console.log(update, auth);
+const addTrade = async (update, auth) => {
+  console.log(update, auth, 'addTrade');
 
   try {
-    const { data } = await axios.patch(
-      `${BASE_URL}/users/update`,
+    const { data } = await axios.post(
+      `${BASE_URL}/trades`,
       {
-        update
+        ...update
       },
       {
-        headers: { token: auth.token }
+        headers: { token: auth }
       }
     );
     return data;
