@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const BASE_URL = require('./axios');
 
-const addTrade = async (update, auth) => {
-  console.log(update, auth, 'addTrade');
+const addEditTrade = async (update, auth, method) => {
+  console.log(update, auth, method, 'addEditTrade');
 
   try {
     const { data } = await axios.post(
@@ -21,4 +21,4 @@ const addTrade = async (update, auth) => {
   }
 };
 
-export { addTrade };
+export { addEditTrade };

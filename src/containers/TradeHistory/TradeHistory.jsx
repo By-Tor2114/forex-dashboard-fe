@@ -16,7 +16,7 @@ const TradeHistory = ({ token, user }) => {
   const [showAddTradeModal, setShowAddTradeModal] = useState(false);
   const [updateTrades, setUpdateTrades] = useState(false);
 
-  // Show view trade modal and ssts individual trade for modal
+  // Show view trade modal and sets individual trade for modal
   const [showViewTradeModal, setShowViewTradeModal] = useState(false);
   const [singleTrade, setSingleTrade] = useState({});
 
@@ -65,12 +65,14 @@ const TradeHistory = ({ token, user }) => {
   const addTradeModalToggler = event => {
     event.preventDefault();
     setMethod('POST');
+    setShowViewTradeModal(false);
     setShowAddTradeModal(!showAddTradeModal);
   };
 
   const viewTradeModalToggler = (event, trade) => {
     event.preventDefault();
     setMethod('PATCH');
+    setShowAddTradeModal(false);
     setSingleTrade(trade);
     setShowViewTradeModal(!showViewTradeModal);
   };
@@ -106,8 +108,12 @@ const TradeHistory = ({ token, user }) => {
             </div>
           </li>
         ))}
-        {showViewTradeModal && (
-          <AddEditTradeModal trade={singleTrade} method={method} />
+        {showAddTradeModal && (
+          <AddEditTradeModal
+            toggle={addTradeModalToggler}
+            trade={singleTrade}
+            method={method}
+          />
         )}
       </ul>
     );
@@ -132,11 +138,13 @@ const TradeHistory = ({ token, user }) => {
           {showTrades ? 'Hide' : 'Show'} Trade List
         </Button>
       </div>
+
       {list}
 
-      {showAddTradeModal && (
+      {showViewTradeModal && (
         <AddEditTradeModal
           method={method}
+          trade={singleTrade}
           updateTrades={updateTrades}
           setUpdateTrades={setUpdateTrades}
           toggle={addTradeModalToggler}

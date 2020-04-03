@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 
 import FormInput from '../FormInput/FormInput';
 import AppContext from '../../context/context';
-import { addTrade } from '../../utils/add-trade';
+import { addEditTrade } from '../../utils/add-edit-trade';
 import './AddEditTradeModal.css';
 import Button from '../Button/Button';
 
@@ -10,7 +10,8 @@ const AddEditTradeModal = ({
   toggle,
   updateTrades,
   setUpdateTrades,
-  method
+  method,
+  trade
 }) => {
   const context = useContext(AppContext);
 
@@ -18,7 +19,7 @@ const AddEditTradeModal = ({
   const [disableButton, setDisableButton] = useState(true);
   const [updateMessage, setUpdateMessage] = useState(false);
 
-  console.log(method);
+  console.log(method, trade);
 
   const onChangeHandler = event => {
     setPostTrade({
@@ -42,7 +43,11 @@ const AddEditTradeModal = ({
   const onSubmitHandler = async event => {
     event.preventDefault();
 
-    const response = await addTrade(postTrade, context.token.user.token);
+    const response = await addEditTrade(
+      postTrade,
+      context.token.user.token,
+      method
+    );
 
     console.log(response, '<==== response');
 
