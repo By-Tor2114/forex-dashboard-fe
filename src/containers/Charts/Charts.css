@@ -1,0 +1,9 @@
+.Charts {
+  color: #f4f4f4;
+}
+
+.Charts .statistics-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

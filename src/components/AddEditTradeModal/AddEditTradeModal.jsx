@@ -11,7 +11,7 @@ const AddEditTradeModal = ({
   updateTrades,
   setUpdateTrades,
   method,
-  trade
+  trade,
 }) => {
   const context = useContext(AppContext);
   const {
@@ -25,24 +25,24 @@ const AddEditTradeModal = ({
     tradeId,
     tradeNotes,
     tradeDirection,
-    _id
+    _id,
   } = trade;
 
   const [postTrade, setPostTrade] = useState({});
   const [disableButton, setDisableButton] = useState(true);
   const [updateMessage, setUpdateMessage] = useState(false);
 
-  const onChangeHandler = event => {
+  const onChangeHandler = (event) => {
     setPostTrade({
       ...postTrade,
-      [event.target.id]: event.target.value
+      [event.target.id]: event.target.value,
     });
 
     formChecker({ ...postTrade, [event.target.id]: event.target.value });
   };
 
-  const formChecker = updates => {
-    const checked = Object.values(updates).find(elem => elem.length > 0);
+  const formChecker = (updates) => {
+    const checked = Object.values(updates).find((elem) => elem.length > 0);
 
     setUpdateMessage(false);
 
@@ -51,7 +51,7 @@ const AddEditTradeModal = ({
       : setDisableButton(false);
   };
 
-  const onSubmitHandler = async event => {
+  const onSubmitHandler = async (event) => {
     const deleteEvent = event.target.textContent.split(' ')[0];
     console.log(deleteEvent);
 
@@ -74,7 +74,7 @@ const AddEditTradeModal = ({
     setPostTrade({});
   };
 
-  const deleteTradeHandler = async event => {
+  const deleteTradeHandler = async (event) => {
     event.preventDefault();
     const deleted = await addEditDeleteTrade(
       null,
@@ -117,11 +117,6 @@ const AddEditTradeModal = ({
           <h2 className="trade-modal-header">View/Edit Trade</h2>
         ) : (
           <h2 className="trade-modal-header">Add Trade</h2>
-        )}
-        {trade.outcome && (
-          <Button toggle={deleteTradeHandler} styling="button-delete">
-            Delete Trade
-          </Button>
         )}
         <FormInput
           changeHandler={onChangeHandler}
@@ -217,6 +212,11 @@ const AddEditTradeModal = ({
           required={false}
         />
         {saveChanges}
+        {trade.outcome && (
+          <Button toggle={deleteTradeHandler} styling="button-delete">
+            Delete Trade
+          </Button>
+        )}
         <Button toggle={toggle} styling="button-cancel">
           Close Window
         </Button>

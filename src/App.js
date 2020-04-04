@@ -6,12 +6,13 @@ import Navbar from './components/Navbar/Navbar';
 import { AppProvider } from './context/context';
 import './App.css';
 import TradeHistory from './containers/TradeHistory/TradeHistory';
+import Charts from './containers/Charts/Charts';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState(null);
 
-  const initialiseAccount = token => {
+  const initialiseAccount = (token) => {
     localStorage.setItem('token', JSON.stringify(token));
     setToken(token);
     setIsLoggedIn(true);
@@ -37,6 +38,7 @@ const App = () => {
       <BrowserRouter>
         <Navbar logout={logoutHandler} />
         <TradeHistory token={token.user.token} user={token.user} />
+        <Charts token={token.user.token} user={token.user} />
         <Switch></Switch>
       </BrowserRouter>
     );
@@ -47,7 +49,7 @@ const App = () => {
           <Route
             path="/"
             exact
-            render={props => <Auth accountInit={initialiseAccount} />}
+            render={(props) => <Auth accountInit={initialiseAccount} />}
           />
           <Redirect to="/" />
         </Switch>

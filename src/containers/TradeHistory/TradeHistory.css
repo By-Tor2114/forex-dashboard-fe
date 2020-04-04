@@ -74,7 +74,7 @@
 
 @media only screen and (min-width: 600px) {
   .TradeHistory ul {
-    width: 60%;
+    width: 640px;
   }
 
   .TradeHistory .history-head {
