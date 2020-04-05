@@ -5,6 +5,7 @@ import Button from '../../components/Button/Button';
 import './Charts.css';
 import LineChart from '../../components/LineChart/LineChart';
 import { getTrades } from '../../utils/get-trades';
+
 const Charts = ({ token, user }) => {
   // Set trades and update
   const [trades, setTrades] = useState([]);
@@ -25,7 +26,7 @@ const Charts = ({ token, user }) => {
 
     switch (chart) {
       case 'Equity Chart':
-        return setChart(<LineChart trades={trades} />);
+        return setChart(<LineChart trades={trades} user={user} />);
       default:
         return null;
     }

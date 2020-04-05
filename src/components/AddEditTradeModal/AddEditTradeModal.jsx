@@ -167,7 +167,7 @@ const AddEditTradeModal = ({
           id="swap"
           type="number"
           name="Swap (optional)"
-          placeholder={swap || 'example: 22.50'}
+          placeholder={swap || 'example: -22.50 || 22.50'}
           required={false}
         />
         <FormInput

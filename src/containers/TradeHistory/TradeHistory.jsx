@@ -34,8 +34,8 @@ const TradeHistory = ({ token, user }) => {
 
       trades.forEach((trade) => {
         trade.outcome === 'Winner'
-          ? (balance += trade.profitLoss)
-          : (balance -= trade.profitLoss);
+          ? (balance += trade.profitLoss + trade.swap - trade.commission)
+          : (balance -= trade.profitLoss - trade.swap + trade.commission);
       });
 
       setBalance(balance);
@@ -61,6 +61,7 @@ const TradeHistory = ({ token, user }) => {
     event.preventDefault();
     setMethod('POST');
     setSingleTrade({});
+    setShowTrades(true);
     setShowViewTradeModal(false);
     setShowAddTradeModal(!showAddTradeModal);
   };
