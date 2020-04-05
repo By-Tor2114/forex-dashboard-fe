@@ -11,6 +11,7 @@ const { dateFormatter } = require('../../utils/helper-funcs');
 const TradeHistory = ({ token, user }) => {
   // CONTEXT
   const context = useContext(AppContext);
+  console.log(context);
 
   // Initial trades and running balance
   const [trades, setTrades] = useState([]);

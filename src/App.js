@@ -9,7 +9,13 @@ import TradeHistory from './containers/TradeHistory/TradeHistory';
 import Charts from './containers/Charts/Charts';
 
 const App = () => {
+  // Checks if user has token, amends routes accordingly
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Global boolean for triggering update of charts with useEffect
+  const [updateCharts, setUpdateCharts] = useState(false);
+
+  // Token returned from server
   const [token, setToken] = useState(null);
 
   const initialiseAccount = (token) => {
@@ -38,7 +44,11 @@ const App = () => {
       <Fragment>
         <Navbar logout={logoutHandler} />
         <TradeHistory token={token.user.token} user={token.user} />
-        <Charts token={token.user.token} user={token.user} />
+        <Charts
+          token={token.user.token}
+          user={token.user}
+          updateCharts={updateCharts}
+        />
       </Fragment>
     );
   } else {
@@ -58,7 +68,11 @@ const App = () => {
 
   return (
     <div className="App">
-      <AppProvider value={{ token, initialiseAccount }}>{routes}</AppProvider>
+      <AppProvider
+        value={{ token, initialiseAccount, updateCharts, setUpdateCharts }}
+      >
+        {routes}
+      </AppProvider>
     </div>
   );
 };

@@ -69,6 +69,7 @@ const AddEditTradeModal = ({
     if (response) {
       setUpdateMessage(true);
       setUpdateTrades(!updateTrades);
+      context.setUpdateCharts(!context.updateCharts);
     }
 
     setPostTrade({});
@@ -86,6 +87,7 @@ const AddEditTradeModal = ({
 
     if (deleted) {
       setUpdateTrades(!updateTrades);
+      context.setUpdateCharts(!context.updateCharts);
     }
   };
 

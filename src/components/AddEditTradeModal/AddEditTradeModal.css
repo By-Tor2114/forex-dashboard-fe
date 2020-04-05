@@ -9,6 +9,7 @@
   border-radius: 5px;
   padding: 20px;
   overflow-y: scroll;
+  z-index: 1;
 }
 
 .AddEditTradeModal .trade-modal-header {

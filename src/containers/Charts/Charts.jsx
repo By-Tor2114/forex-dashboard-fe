@@ -5,8 +5,11 @@ import Button from '../../components/Button/Button';
 import './Charts.css';
 import LineChart from '../../components/LineChart/LineChart';
 import { getTrades } from '../../utils/get-trades';
+import { updateUser } from '../../utils/update-user';
 
-const Charts = ({ token, user }) => {
+const Charts = ({ token, user, updateCharts }) => {
+  // CONTEXT
+
   // Set trades and update
   const [trades, setTrades] = useState([]);
 
@@ -42,7 +45,7 @@ const Charts = ({ token, user }) => {
       setChart(<LineChart trades={trades} user={user} />);
     };
     fetchTrades();
-  }, [token]);
+  }, [token, user, updateCharts]);
 
   let list;
 
