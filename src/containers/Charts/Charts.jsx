@@ -1,14 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import './Charts.css';
-import { getTrades } from '../../utils/get-trades';
 import Button from '../../components/Button/Button';
 
+import './Charts.css';
+import LineChart from '../../components/LineChart/LineChart';
+import { getTrades } from '../../utils/get-trades';
 const Charts = ({ token, user }) => {
-  // Initial Trades
+  // Set trades and update
   const [trades, setTrades] = useState([]);
 
+  // Shows/Hides stat list
   const [showStats, setShowStats] = useState(true);
+
+  // Set chart to display
+  const [chart, setChart] = useState(null);
+
+  const listToggler = (event) => {
+    event.preventDefault();
+    setShowStats(!showStats);
+  };
+
+  const chartSelector = (event) => {
+    const chart = event.currentTarget.innerText;
+
+    switch (chart) {
+      case 'Equity Chart':
+        return setChart(<LineChart trades={trades} />);
+      default:
+        return null;
+    }
+  };
 
   useEffect(() => {
     const fetchTrades = async () => {
@@ -18,9 +39,27 @@ const Charts = ({ token, user }) => {
 
       setTrades(trades);
     };
-
     fetchTrades();
-  }, [token, user.accountBalance]);
+  }, [token]);
+
+  let list;
+
+  if (showStats) {
+    list = (
+      <div className="chart-container">
+        <span
+          onClick={(event) => {
+            chartSelector(event);
+          }}
+        >
+          <Button styling="chart-nav">Equity Chart</Button>
+        </span>
+        {chart}
+      </div>
+    );
+  } else {
+    list = null;
+  }
 
   return (
     <div className="Charts">
@@ -28,10 +67,11 @@ const Charts = ({ token, user }) => {
         <h2 className="m-1">
           Trade <span className="span-green">$</span>tats
         </h2>
-        <Button styling="hide-list mr-1">
+        <Button toggle={listToggler} styling="hide-list">
           {showStats ? 'Hide' : 'Show'} Stats List
         </Button>
       </div>
+      {list}
     </div>
   );
 };

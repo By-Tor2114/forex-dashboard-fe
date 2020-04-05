@@ -1,19 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import Button from '../../components/Button/Button';
 import './TradeHistory.css';
 import AddEditTradeModal from '../../components/AddEditTradeModal/AddEditTradeModal';
+import AppContext from '../../context/context';
 
 const { getTrades } = require('../../utils/get-trades');
 const { dateFormatter } = require('../../utils/helper-funcs');
 
 const TradeHistory = ({ token, user }) => {
+  // CONTEXT
+  const context = useContext(AppContext);
+
   // Initial trades and running balance
   const [trades, setTrades] = useState([]);
   const [balance, setBalance] = useState(0);
 
   // Show trade list, add trade modal and refreshes trade list
-  const [showTrades, setShowTrades] = useState(true);
+  const [showTrades, setShowTrades] = useState(false);
   const [showAddTradeModal, setShowAddTradeModal] = useState(false);
   const [updateTrades, setUpdateTrades] = useState(false);
 
@@ -25,10 +29,10 @@ const TradeHistory = ({ token, user }) => {
   const [method, setMethod] = useState('');
 
   useEffect(() => {
-    const balanceCalc = trades => {
+    const balanceCalc = (trades) => {
       let balance = user.accountBalance;
 
-      trades.forEach(trade => {
+      trades.forEach((trade) => {
         trade.outcome === 'Winner'
           ? (balance += trade.profitLoss)
           : (balance -= trade.profitLoss);
@@ -46,14 +50,14 @@ const TradeHistory = ({ token, user }) => {
       balanceCalc(trades);
     };
     fetchTrades();
-  }, [token, updateTrades, user.accountBalance]);
+  }, [token, updateTrades, user.accountBalance, context.trades]);
 
-  const listToggler = event => {
+  const listToggler = (event) => {
     event.preventDefault();
     setShowTrades(!showTrades);
   };
 
-  const addTradeModalToggler = event => {
+  const addTradeModalToggler = (event) => {
     event.preventDefault();
     setMethod('POST');
     setSingleTrade({});
@@ -92,7 +96,7 @@ const TradeHistory = ({ token, user }) => {
                 {trade.profitLoss || 'N/A'}
               </p>
               <p
-                onClick={event => viewTradeModalToggler(event, trade)}
+                onClick={(event) => viewTradeModalToggler(event, trade)}
                 className="view-trade"
               >
                 View Trade

@@ -1,9 +1,18 @@
 .Charts {
   color: #f4f4f4;
+  border: 1px solid red;
 }
 
 .Charts .statistics-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.Charts .chart-container {
+  border: 1px solid green;
+  max-width: 98%;
+  margin: 0 auto;
+  display: flex;
+  padding: 0 10px;
 }

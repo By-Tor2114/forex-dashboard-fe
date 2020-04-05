@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 
 import Auth from './containers/Auth/Auth';
@@ -35,12 +35,14 @@ const App = () => {
 
   if (isLoggedIn) {
     routes = (
-      <BrowserRouter>
+      <Fragment>
         <Navbar logout={logoutHandler} />
         <TradeHistory token={token.user.token} user={token.user} />
-        <Charts token={token.user.token} user={token.user} />
-        <Switch></Switch>
-      </BrowserRouter>
+        <BrowserRouter>
+          <Charts token={token.user.token} user={token.user} />
+          <Switch></Switch>
+        </BrowserRouter>
+      </Fragment>
     );
   } else {
     routes = (
