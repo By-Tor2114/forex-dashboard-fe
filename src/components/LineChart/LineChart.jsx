@@ -5,24 +5,19 @@ import { Chart } from 'react-google-charts';
 import './LineChart.css';
 
 const LineChart = ({ trades, user }) => {
-  console.log(trades, 'LineChart');
-
-  // CONTEXT
-
+  // Formatted trades for line chart
   const [formattedTrades, setFormattedTrades] = useState([]);
 
   useEffect(() => {
     let localBalance = user.accountBalance;
     const runningBalanceCalc = (trade) => {
-      console.log(trade);
-
       return trade.outcome === 'Winner'
         ? (localBalance += trade.profitLoss + trade.swap - trade.commission)
         : (localBalance -= trade.profitLoss - trade.swap + trade.commission);
     };
 
     const formattedData = trades.map((trade) => [
-      dateFormatter(trade.dateClosed) + '..',
+      dateFormatter(trade.dateClosed) + '...',
       runningBalanceCalc(trade),
     ]);
 
@@ -31,7 +26,6 @@ const LineChart = ({ trades, user }) => {
 
   return (
     <div className="LineChart">
-      <h1>In Line Chart</h1>
       <Chart
         width={'100%'}
         height={'100%'}
@@ -39,6 +33,7 @@ const LineChart = ({ trades, user }) => {
         loader={<div>Loading Chart</div>}
         data={[['Date', 'Running Balance'], ...formattedTrades]}
         options={{
+          legend: 'top',
           vAxis: { title: 'Equity Curve' },
           series: {
             0: { color: 'limeGreen' },

@@ -38,10 +38,7 @@ const App = () => {
       <Fragment>
         <Navbar logout={logoutHandler} />
         <TradeHistory token={token.user.token} user={token.user} />
-        <BrowserRouter>
-          <Charts token={token.user.token} user={token.user} />
-          <Switch></Switch>
-        </BrowserRouter>
+        <Charts token={token.user.token} user={token.user} />
       </Fragment>
     );
   } else {

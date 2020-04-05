@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 
 import Button from '../../components/Button/Button';
 
@@ -39,6 +39,7 @@ const Charts = ({ token, user }) => {
       trades.sort((a, b) => new Date(a.dateOpened) - new Date(b.dateOpened));
 
       setTrades(trades);
+      setChart(<LineChart trades={trades} user={user} />);
     };
     fetchTrades();
   }, [token]);
@@ -47,16 +48,20 @@ const Charts = ({ token, user }) => {
 
   if (showStats) {
     list = (
-      <div className="chart-container">
-        <span
-          onClick={(event) => {
-            chartSelector(event);
-          }}
-        >
-          <Button styling="chart-nav">Equity Chart</Button>
-        </span>
-        {chart}
-      </div>
+      <Fragment>
+        <div className="chart-container-nav">
+          <span
+            onClick={(event) => {
+              chartSelector(event);
+            }}
+          >
+            <Button styling="chart-nav">Equity Chart</Button>
+          </span>
+        </div>
+        <div className="chart-container ">
+          <div>{chart}</div>
+        </div>
+      </Fragment>
     );
   } else {
     list = null;
@@ -68,7 +73,7 @@ const Charts = ({ token, user }) => {
         <h2 className="m-1">
           Trade <span className="span-green">$</span>tats
         </h2>
-        <Button toggle={listToggler} styling="hide-list">
+        <Button toggle={listToggler} styling="hide-list mr-1">
           {showStats ? 'Hide' : 'Show'} Stats List
         </Button>
       </div>
