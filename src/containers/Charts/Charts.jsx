@@ -5,7 +5,7 @@ import Button from '../../components/Button/Button';
 import './Charts.css';
 import LineChart from '../../components/LineChart/LineChart';
 import { getTrades } from '../../utils/get-trades';
-import { updateUser } from '../../utils/update-user';
+import PairOutcomesChart from '../../components/PairOutcomesChart/PairOutcomesChart';
 
 const Charts = ({ token, user, updateCharts }) => {
   // CONTEXT
@@ -30,6 +30,8 @@ const Charts = ({ token, user, updateCharts }) => {
     switch (chart) {
       case 'Equity Chart':
         return setChart(<LineChart trades={trades} user={user} />);
+      case 'Outcomes By Pair':
+        return setChart(<PairOutcomesChart trades={trades} />);
       default:
         return null;
     }
@@ -42,7 +44,7 @@ const Charts = ({ token, user, updateCharts }) => {
       trades.sort((a, b) => new Date(a.dateOpened) - new Date(b.dateOpened));
 
       setTrades(trades);
-      setChart(<LineChart trades={trades} user={user} />);
+      setChart(<PairOutcomesChart trades={trades} />);
     };
     fetchTrades();
   }, [token, user, updateCharts]);
@@ -58,7 +60,14 @@ const Charts = ({ token, user, updateCharts }) => {
               chartSelector(event);
             }}
           >
-            <Button styling="chart-nav">Equity Chart</Button>
+            <Button styling="chart-nav mr-1 ">Equity Chart</Button>
+          </span>
+          <span
+            onClick={(event) => {
+              chartSelector(event);
+            }}
+          >
+            <Button styling="chart-nav mr-1 ">Outcomes By Pair</Button>
           </span>
         </div>
         <div className="chart-container ">
