@@ -1,8 +1,35 @@
-.PairOutcomesChart div {
-  height: 400px;
+.PairOutcomesChart {
+  width: 800px;
 }
 
 .PairOutcomesChart svg {
   border-radius: 5px;
   z-index: 1;
+}
+
+@media only screen and (max-width: 2000px) {
+  .PairOutcomesChart {
+    width: 1000px;
+    height: 500px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .PairOutcomesChart {
+    width: 900px;
+    height: 500px;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .PairOutcomesChart {
+    width: 600px;
+    height: 300px;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .PairOutcomesChart {
+    width: 300px;
+  }
 }
