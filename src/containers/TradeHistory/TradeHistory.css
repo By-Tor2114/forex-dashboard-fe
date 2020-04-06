@@ -6,12 +6,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 1rem;
 }
 
 .TradeHistory .history-balance {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 1rem;
 }
 
 .TradeHistory ul {
@@ -72,19 +74,19 @@
   padding: 0 5px;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 500px) {
   .TradeHistory ul {
     width: 640px;
   }
 
   .TradeHistory .history-head {
     justify-content: space-between;
-    width: 65%;
+    width: 80%;
     margin: 0 auto;
   }
 
   .TradeHistory .history-balance {
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
   }
 
@@ -92,5 +94,20 @@
   .TradeHistory ul .loser {
     padding: 0 10px;
     width: 100%;
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  .winner,
+  .loser {
+    font-size: 0.8rem;
+  }
+
+  .TradeHistory .history-balance {
+    margin: 0 0.3rem;
+  }
+
+  .TradeHistory .history-head {
+    margin: 0 0.3rem;
   }
 }

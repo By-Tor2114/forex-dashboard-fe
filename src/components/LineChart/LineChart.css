@@ -1,3 +1,7 @@
+.LineChart div {
+  height: 400px;
+}
+
 .LineChart svg {
   border-radius: 5px;
   z-index: 1;

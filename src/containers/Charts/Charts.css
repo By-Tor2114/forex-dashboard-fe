@@ -1,18 +1,19 @@
 .Charts {
   color: #f4f4f4;
-  /* border: 1px solid red; */
 }
 
 .Charts .statistics-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 1rem;
 }
 
 .Charts .chart-container-nav {
   max-width: 100%;
   margin: 0 auto;
   display: flex;
+  justify-content: flex-start;
   padding: 0 18px;
 }
 
@@ -25,10 +26,25 @@
   margin: 0;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 550px) {
   .Charts .statistics-head {
     justify-content: space-between;
-    width: 65%;
+    width: 80%;
     margin: 0 auto;
+  }
+
+  .Charts .chart-container-nav {
+    justify-content: flex-start;
+    width: 80%;
+  }
+
+  .Charts .chart-container-nav span {
+    margin-right: 0 10px;
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  .Charts .statistics-head {
+    margin: 0 0.3rem;
   }
 }

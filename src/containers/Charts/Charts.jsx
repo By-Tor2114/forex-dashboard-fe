@@ -61,21 +61,21 @@ const Charts = ({ token, user, updateCharts }) => {
               chartSelector(event);
             }}
           >
-            <Button styling="chart-nav mr-1 ">Equity Chart</Button>
+            <Button styling="chart-nav">Equity Chart</Button>
           </span>
           <span
             onClick={(event) => {
               chartSelector(event);
             }}
           >
-            <Button styling="chart-nav mr-1 ">By Pair</Button>
+            <Button styling="chart-nav">By Pair</Button>
           </span>
           <span
             onClick={(event) => {
               chartSelector(event);
             }}
           >
-            <Button styling="chart-nav mr-1 ">By Direction</Button>
+            <Button styling="chart-nav">By Direction</Button>
           </span>
         </div>
         <div className="chart-container ">
@@ -98,10 +98,10 @@ const Charts = ({ token, user, updateCharts }) => {
   return (
     <div className="Charts">
       <div className="statistics-head">
-        <h2 className="m-1">
+        <h2>
           Trade <span className="span-green">$</span>tats
         </h2>
-        <Button toggle={listToggler} styling="hide-list mr-1">
+        <Button toggle={listToggler} styling="hide-list">
           {showStats ? 'Hide' : 'Show'} Stats List
         </Button>
       </div>

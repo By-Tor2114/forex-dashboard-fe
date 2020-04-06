@@ -32,8 +32,6 @@ const LineChart = ({ trades, user }) => {
         </p>
       ) : (
         <Chart
-          width={'100%'}
-          height={'100%'}
           chartType="LineChart"
           loader={<div>Loading Chart</div>}
           data={[['Date', 'Running Balance'], ...formattedTrades]}

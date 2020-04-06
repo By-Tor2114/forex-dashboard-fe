@@ -26,3 +26,9 @@
   border-radius: 5px;
   /* overflow-y: scroll; */
 }
+
+@media only screen and (max-height: 350px) {
+  .Auth {
+    height: 170%;
+  }
+}

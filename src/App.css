@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  overflow: scroll;
 }
 
 /* GLOBAL CLASSES */
@@ -92,6 +93,7 @@ button {
 .chart-nav {
   color: white;
   cursor: pointer;
+  margin-right: 0.7rem;
   padding: 5px;
   border-radius: 5px;
   background: linear-gradient(to bottom, #3387c4 2%, #125184 100%);

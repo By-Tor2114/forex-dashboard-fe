@@ -54,6 +54,7 @@ const TradeHistory = ({ token, user }) => {
 
   const listToggler = (event) => {
     event.preventDefault();
+    setShowViewTradeModal(false);
     setShowTrades(!showTrades);
   };
 
@@ -123,15 +124,15 @@ const TradeHistory = ({ token, user }) => {
   return (
     <div className="TradeHistory">
       <div className="history-head">
-        <h2 className="m-1">
+        <h2>
           Trade Hi<span className="span-green">$</span>tory
         </h2>
-        <Button toggle={addTradeModalToggler} styling="button-add m-1">
+        <Button toggle={addTradeModalToggler} styling="button-add ">
           Add Trade
         </Button>
       </div>
 
-      <div className="history-balance ml-1 mr-1">
+      <div className="history-balance">
         {!balance || balance === 0 ? (
           <p className="span-trade-prompt ml-1">
             Please set balance in 'Update Profile'
