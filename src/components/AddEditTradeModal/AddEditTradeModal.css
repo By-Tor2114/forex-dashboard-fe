@@ -15,3 +15,11 @@
 .AddEditTradeModal .trade-modal-header {
   color: rgb(108, 138, 206);
 }
+
+@media only screen and (min-width: 1600px) {
+  .AddEditTradeModal {
+    top: 10%;
+    left: 30%;
+    right: 30%;
+  }
+}

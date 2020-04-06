@@ -91,7 +91,7 @@
 
 @media only screen and (max-width: 2000px) {
   .TradeHistory ul {
-    width: 90%;
+    width: 63%;
   }
 
   .TradeHistory .history-head {
@@ -136,6 +136,9 @@
 }
 
 @media only screen and (max-width: 380px) {
+  .TradeHistory ul {
+    width: 98%;
+  }
   .winner,
   .loser {
     font-size: 0.8rem;
