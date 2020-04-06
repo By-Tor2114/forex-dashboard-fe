@@ -32,7 +32,6 @@ const OutcomesByDirection = ({ trades }) => {
       ]);
     }
 
-    console.log(tradeTotals);
     setChartData(formattedData);
   }, [trades]);
 
@@ -43,7 +42,7 @@ const OutcomesByDirection = ({ trades }) => {
         height={'100%'}
         chartType="BarChart"
         loader={<div>Loading Chart</div>}
-        data={[['Direction', 'Profit', 'Loss'], ...chartData]}
+        data={[['Direction', 'Winners', 'Losers'], ...chartData]}
         options={{
           legend: 'top',
           series: {

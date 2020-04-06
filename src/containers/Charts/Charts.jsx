@@ -9,13 +9,11 @@ import PairOutcomesChart from '../../components/PairOutcomesChart/PairOutcomesCh
 import OutcomesByDirection from '../../components/OutcomesByDirection/OutcomesByDirection';
 
 const Charts = ({ token, user, updateCharts }) => {
-  // CONTEXT
-
   // Set trades and update
   const [trades, setTrades] = useState([]);
 
   // Shows/Hides stat list
-  const [showStats, setShowStats] = useState(true);
+  const [showStats, setShowStats] = useState(false);
 
   // Set chart to display
   const [chart, setChart] = useState(null);
@@ -26,13 +24,14 @@ const Charts = ({ token, user, updateCharts }) => {
   };
   const chartSelector = (event) => {
     const chart = event.currentTarget.innerText;
+    console.log('in selector');
 
     switch (chart) {
       case 'Equity Chart':
         return setChart(<LineChart trades={trades} user={user} />);
-      case 'Outcomes By Pair':
+      case 'By Pair':
         return setChart(<PairOutcomesChart trades={trades} />);
-      case 'Outcomes By Direction':
+      case 'By Direction':
         return setChart(<OutcomesByDirection trades={trades} />);
       default:
         return null;
@@ -46,7 +45,7 @@ const Charts = ({ token, user, updateCharts }) => {
       trades.sort((a, b) => new Date(a.dateOpened) - new Date(b.dateOpened));
 
       setTrades(trades);
-      setChart(<OutcomesByDirection trades={trades} />);
+      setChart(<LineChart trades={trades} user={user} />);
     };
     fetchTrades();
   }, [token, user, updateCharts]);
@@ -69,18 +68,26 @@ const Charts = ({ token, user, updateCharts }) => {
               chartSelector(event);
             }}
           >
-            <Button styling="chart-nav mr-1 ">Outcomes By Pair</Button>
+            <Button styling="chart-nav mr-1 ">By Pair</Button>
           </span>
           <span
             onClick={(event) => {
               chartSelector(event);
             }}
           >
-            <Button styling="chart-nav mr-1 ">Outcomes By Direction</Button>
+            <Button styling="chart-nav mr-1 ">By Direction</Button>
           </span>
         </div>
         <div className="chart-container ">
-          <div>{chart}</div>
+          <div>
+            {trades.length === 0 ? (
+              <p className="span-trade-prompt mt-2">
+                No trades in Trade History yet
+              </p>
+            ) : (
+              chart
+            )}
+          </div>
         </div>
       </Fragment>
     );

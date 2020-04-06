@@ -26,20 +26,26 @@ const LineChart = ({ trades, user }) => {
 
   return (
     <div className="LineChart">
-      <Chart
-        width={'100%'}
-        height={'100%'}
-        chartType="LineChart"
-        loader={<div>Loading Chart</div>}
-        data={[['Date', 'Running Balance'], ...formattedTrades]}
-        options={{
-          legend: 'top',
-          vAxis: { title: 'Equity Curve' },
-          series: {
-            0: { color: 'limeGreen' },
-          },
-        }}
-      />
+      {formattedTrades.length < 2 ? (
+        <p className="span-highlight mt-2">
+          The equity chart requires at least two trades in trade history
+        </p>
+      ) : (
+        <Chart
+          width={'100%'}
+          height={'100%'}
+          chartType="LineChart"
+          loader={<div>Loading Chart</div>}
+          data={[['Date', 'Running Balance'], ...formattedTrades]}
+          options={{
+            legend: 'top',
+            vAxis: { title: 'Equity Curve' },
+            series: {
+              0: { color: 'limeGreen' },
+            },
+          }}
+        />
+      )}
     </div>
   );
 };

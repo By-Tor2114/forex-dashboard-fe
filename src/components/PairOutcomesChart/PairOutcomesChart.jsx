@@ -31,7 +31,6 @@ const PairOutcomesChart = ({ trades }) => {
         tradeTotals[pair].totalLoss,
       ]);
     }
-    console.log(formattedData);
 
     setChartData(formattedData);
   }, [trades]);

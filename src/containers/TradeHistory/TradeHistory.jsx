@@ -17,7 +17,7 @@ const TradeHistory = ({ token, user }) => {
   const [balance, setBalance] = useState(0);
 
   // Show trade list, add trade modal and refreshes trade list
-  const [showTrades, setShowTrades] = useState(false);
+  const [showTrades, setShowTrades] = useState(true);
   const [showAddTradeModal, setShowAddTradeModal] = useState(false);
   const [updateTrades, setUpdateTrades] = useState(false);
 
@@ -132,10 +132,19 @@ const TradeHistory = ({ token, user }) => {
       </div>
 
       <div className="history-balance ml-1 mr-1">
-        <p>Running Balance: {balance} </p>
-        <Button toggle={listToggler} styling="hide-list">
-          {showTrades ? 'Hide' : 'Show'} Trade List
-        </Button>
+        {!balance || balance === 0 ? (
+          <p className="span-trade-prompt ml-1">
+            Please set balance in 'Update Profile'
+          </p>
+        ) : (
+          <p>Running Balance: {balance} </p>
+        )}
+        {!balance ||
+          (balance !== 0 && (
+            <Button toggle={listToggler} styling="hide-list">
+              {showTrades ? 'Hide' : 'Show'} Trade List
+            </Button>
+          ))}
       </div>
 
       {list}

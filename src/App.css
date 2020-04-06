@@ -124,6 +124,15 @@ button {
   padding: 4px 10px;
 }
 
+.span-trade-prompt {
+  color: rgb(158, 174, 216);
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #f4f4f410;
+  border-radius: 5px;
+  padding: 4px 10px;
+}
+
 .span-green {
   color: rgb(0, 187, 31);
 }
