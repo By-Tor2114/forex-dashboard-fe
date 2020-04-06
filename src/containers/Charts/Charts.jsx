@@ -44,7 +44,7 @@ const Charts = ({ token, user, updateCharts }) => {
       trades.sort((a, b) => new Date(a.dateOpened) - new Date(b.dateOpened));
 
       setTrades(trades);
-      setChart(<PairOutcomesChart trades={trades} />);
+      setChart(<LineChart trades={trades} user={user} />);
     };
     fetchTrades();
   }, [token, user, updateCharts]);

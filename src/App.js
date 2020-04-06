@@ -41,7 +41,7 @@ const App = () => {
 
   if (isLoggedIn) {
     routes = (
-      <Fragment>
+      <div className="test">
         <Navbar logout={logoutHandler} />
         <TradeHistory token={token.user.token} user={token.user} />
         <Charts
@@ -49,7 +49,7 @@ const App = () => {
           user={token.user}
           updateCharts={updateCharts}
         />
-      </Fragment>
+      </div>
     );
   } else {
     routes = (
