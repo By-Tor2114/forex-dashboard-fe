@@ -7,6 +7,23 @@
 
 /* Buttons */
 
+.modal-closer {
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-closer h2 {
+  border: 1px solid blue;
+  padding: 5px;
+  margin: 0;
+  border-radius: 5px;
+}
+
+.modal-closer h2:hover {
+  color: grey;
+}
+
 button {
   border: none;
 }

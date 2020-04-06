@@ -114,6 +114,9 @@ const AddEditTradeModal = ({
 
   return (
     <div className="AddEditTradeModal">
+      <div onClick={toggle} className="modal-closer">
+        <h2>X</h2>
+      </div>
       <form onSubmit={onSubmitHandler}>
         {outcome ? (
           <h2 className="trade-modal-header">View/Edit Trade</h2>
