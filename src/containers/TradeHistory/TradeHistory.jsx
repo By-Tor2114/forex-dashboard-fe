@@ -17,7 +17,7 @@ const TradeHistory = ({ token, user }) => {
   const [balance, setBalance] = useState(0);
 
   // Show trade list, add trade modal and refreshes trade list
-  const [showTrades, setShowTrades] = useState(true);
+  const [showTrades, setShowTrades] = useState(false);
   const [showAddTradeModal, setShowAddTradeModal] = useState(false);
   const [updateTrades, setUpdateTrades] = useState(false);
 

@@ -6,6 +6,7 @@ import './Charts.css';
 import LineChart from '../../components/LineChart/LineChart';
 import { getTrades } from '../../utils/get-trades';
 import PairOutcomesChart from '../../components/PairOutcomesChart/PairOutcomesChart';
+import OutcomesByDirection from '../../components/OutcomesByDirection/OutcomesByDirection';
 
 const Charts = ({ token, user, updateCharts }) => {
   // CONTEXT
@@ -23,7 +24,6 @@ const Charts = ({ token, user, updateCharts }) => {
     event.preventDefault();
     setShowStats(!showStats);
   };
-
   const chartSelector = (event) => {
     const chart = event.currentTarget.innerText;
 
@@ -32,6 +32,8 @@ const Charts = ({ token, user, updateCharts }) => {
         return setChart(<LineChart trades={trades} user={user} />);
       case 'Outcomes By Pair':
         return setChart(<PairOutcomesChart trades={trades} />);
+      case 'Outcomes By Direction':
+        return setChart(<OutcomesByDirection trades={trades} />);
       default:
         return null;
     }
@@ -44,7 +46,7 @@ const Charts = ({ token, user, updateCharts }) => {
       trades.sort((a, b) => new Date(a.dateOpened) - new Date(b.dateOpened));
 
       setTrades(trades);
-      setChart(<LineChart trades={trades} user={user} />);
+      setChart(<OutcomesByDirection trades={trades} />);
     };
     fetchTrades();
   }, [token, user, updateCharts]);
@@ -68,6 +70,13 @@ const Charts = ({ token, user, updateCharts }) => {
             }}
           >
             <Button styling="chart-nav mr-1 ">Outcomes By Pair</Button>
+          </span>
+          <span
+            onClick={(event) => {
+              chartSelector(event);
+            }}
+          >
+            <Button styling="chart-nav mr-1 ">Outcomes By Direction</Button>
           </span>
         </div>
         <div className="chart-container ">
