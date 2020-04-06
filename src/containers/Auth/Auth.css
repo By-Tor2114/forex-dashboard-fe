@@ -24,7 +24,6 @@
   width: 300px;
   margin: 0 auto;
   border-radius: 5px;
-  /* overflow-y: scroll; */
 }
 
 @media only screen and (max-height: 320px) {

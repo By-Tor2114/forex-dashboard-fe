@@ -18,12 +18,19 @@
 }
 
 .Charts .chart-container {
-  width: 90%;
-  margin: 10px auto;
+  margin: 20px auto 0;
+  display: flex;
+  justify-content: center;
 }
 
 .Charts .chart-container div {
-  margin: 0;
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 700px) {
+  .Charts .statistics-head {
+    max-width: 800px;
+  }
 }
 
 @media only screen and (min-width: 550px) {

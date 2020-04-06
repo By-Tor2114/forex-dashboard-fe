@@ -13,7 +13,7 @@ const Charts = ({ token, user, updateCharts }) => {
   const [trades, setTrades] = useState([]);
 
   // Shows/Hides stat list
-  const [showStats, setShowStats] = useState(false);
+  const [showStats, setShowStats] = useState(true);
 
   // Set chart to display
   const [chart, setChart] = useState(null);
