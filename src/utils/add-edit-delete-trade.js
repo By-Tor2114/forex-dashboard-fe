@@ -3,18 +3,16 @@ import axios from 'axios';
 const BASE_URL = require('./axios');
 
 const addEditDeleteTrade = async (update, auth, method, _id) => {
-  console.log(auth);
-
   if (method === 'PATCH') {
     try {
       const { data } = await axios.patch(
         `${BASE_URL}/trades`,
         {
           update,
-          _id
+          _id,
         },
         {
-          headers: { token: auth }
+          headers: { token: auth },
         }
       );
 
@@ -27,10 +25,10 @@ const addEditDeleteTrade = async (update, auth, method, _id) => {
       const { data } = await axios.post(
         `${BASE_URL}/trades`,
         {
-          ...update
+          ...update,
         },
         {
-          headers: { token: auth }
+          headers: { token: auth },
         }
       );
       return data;
@@ -41,11 +39,11 @@ const addEditDeleteTrade = async (update, auth, method, _id) => {
     try {
       const { data } = await axios.delete(`${BASE_URL}/trades`, {
         headers: {
-          token: auth
+          token: auth,
         },
         data: {
-          _id
-        }
+          _id,
+        },
       });
 
       return data.message;

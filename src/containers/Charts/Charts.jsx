@@ -24,7 +24,6 @@ const Charts = ({ token, user, updateCharts }) => {
   };
   const chartSelector = (event) => {
     const chart = event.currentTarget.innerText;
-    console.log('in selector');
 
     switch (chart) {
       case 'Equity Chart':
