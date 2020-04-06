@@ -27,8 +27,8 @@
   /* overflow-y: scroll; */
 }
 
-@media only screen and (max-height: 350px) {
+@media only screen and (max-height: 320px) {
   .Auth {
-    height: 170%;
+    height: 190%;
   }
 }
