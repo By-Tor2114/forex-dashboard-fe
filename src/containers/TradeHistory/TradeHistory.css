@@ -74,7 +74,7 @@
   padding: 0 5px;
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (max-width: 700px) {
   .TradeHistory .history-head {
     max-width: 800px;
   }
@@ -89,7 +89,30 @@
   }
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (max-width: 2000px) {
+  .TradeHistory ul {
+    width: 90%;
+  }
+
+  .TradeHistory .history-head {
+    justify-content: space-between;
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .TradeHistory .history-balance {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .TradeHistory ul .winner,
+  .TradeHistory ul .loser {
+    padding: 0 10px;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
   .TradeHistory ul {
     width: 90%;
   }
@@ -112,17 +135,15 @@
   }
 }
 
-@media only screen and (max-width: 330px) {
+@media only screen and (max-width: 380px) {
   .winner,
   .loser {
     font-size: 0.8rem;
   }
 
+  .TradeHistory .history-head,
   .TradeHistory .history-balance {
-    margin: 0 0.3rem;
-  }
-
-  .TradeHistory .history-head {
-    margin: 0 0.3rem;
+    width: 97%;
+    margin: 0 auto;
   }
 }

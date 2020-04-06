@@ -9,7 +9,7 @@
 
 @media only screen and (max-width: 2000px) {
   .PairOutcomesChart {
-    width: 1000px;
+    width: 1200px;
     height: 500px;
   }
 }
@@ -21,7 +21,7 @@
   }
 }
 
-@media only screen and (max-width: 780px) {
+@media only screen and (max-width: 820px) {
   .PairOutcomesChart {
     width: 600px;
     height: 300px;

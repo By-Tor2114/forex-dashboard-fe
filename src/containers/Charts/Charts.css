@@ -27,13 +27,24 @@
   margin: 0 auto;
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (max-width: 2000px) {
   .Charts .statistics-head {
-    max-width: 800px;
+    justify-content: space-between;
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .Charts .chart-container-nav {
+    justify-content: flex-start;
+    width: 70%;
+  }
+
+  .Charts .chart-container-nav span {
+    margin-right: 0 10px;
   }
 }
 
-@media only screen and (min-width: 550px) {
+@media only screen and (max-width: 1200px) {
   .Charts .statistics-head {
     justify-content: space-between;
     width: 80%;
@@ -50,8 +61,9 @@
   }
 }
 
-@media only screen and (max-width: 330px) {
+@media only screen and (max-width: 380px) {
   .Charts .statistics-head {
-    margin: 0 0.3rem;
+    width: 97%;
+    margin: 0 auto;
   }
 }
