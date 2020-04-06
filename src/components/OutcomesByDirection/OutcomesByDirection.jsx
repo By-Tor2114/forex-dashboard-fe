@@ -38,6 +38,8 @@ const OutcomesByDirection = ({ trades }) => {
   return (
     <div className="OutcomesByDirection">
       <Chart
+        width={'100%'}
+        height={'100%'}
         chartType="BarChart"
         loader={<div>Loading Chart</div>}
         data={[['Direction', 'Winners', 'Losers'], ...chartData]}

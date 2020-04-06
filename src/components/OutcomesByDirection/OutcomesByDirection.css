@@ -1,3 +1,35 @@
+.OutcomesByDirection {
+  width: 800px;
+}
+
 .OutcomesByDirection svg {
   border-radius: 5px;
+  z-index: 1;
+}
+
+@media only screen and (max-width: 2000px) {
+  .OutcomesByDirection {
+    width: 1000px;
+    height: 500px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .OutcomesByDirection {
+    width: 900px;
+    height: 500px;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .OutcomesByDirection {
+    width: 600px;
+    height: 300px;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .OutcomesByDirection {
+    width: 300px;
+  }
 }
