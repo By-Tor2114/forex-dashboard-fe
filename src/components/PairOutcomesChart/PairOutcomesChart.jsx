@@ -38,9 +38,15 @@ const PairOutcomesChart = ({ trades }) => {
       <Chart
         width={'100%'}
         height={'100%'}
-        chartType="Bar"
+        chartType="BarChart"
         loader={<div>Loading Chart</div>}
         data={[['Currency Pairs', 'Profits', 'Losses'], ...chartData]}
+        options={{
+          legend: 'top',
+          series: {
+            0: { color: 'limeGreen' },
+          },
+        }}
       />
     </div>
   );
