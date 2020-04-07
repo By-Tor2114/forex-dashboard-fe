@@ -26,8 +26,9 @@ const Auth = ({ accountInit }) => {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
+    console.log(path);
 
-    if (auth.confirmPassword) {
+    if (path === 'signup' && auth.confirmPassword) {
       if (auth.password !== auth.confirmPassword) {
         setPassMessage(<p className="warning">Passwords do not match. </p>);
       } else {
@@ -40,6 +41,16 @@ const Auth = ({ accountInit }) => {
         } else {
           setAuthError(<p className="warning">{response}</p>);
         }
+      }
+    } else {
+      setPassMessage(null);
+
+      const response = await authHandler(auth, path);
+
+      if (response.user) {
+        accountInit(response);
+      } else {
+        setAuthError(<p className="warning">{response}</p>);
       }
     }
   };
