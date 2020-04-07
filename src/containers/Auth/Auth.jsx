@@ -11,13 +11,14 @@ const Auth = ({ accountInit }) => {
   const [path, setPath] = useState('login');
   const [auth, setAuth] = useState({});
   const [authError, setAuthError] = useState(null);
+  const [passMessage, setPassMessage] = useState(null);
 
   const onChangeHandler = (event) => {
     setAuth({ ...auth, [event.target.id]: event.target.value });
   };
 
   const loginToggler = () => {
-    setAuth(null);
+    setAuth({});
     setIsLoggingIn(!isLoggingIn);
     setPath(!isLoggingIn ? 'login' : 'signup');
     setAuthError(null);
@@ -26,12 +27,20 @@ const Auth = ({ accountInit }) => {
   const onSubmitHandler = async (event) => {
     event.preventDefault();
 
-    const response = await authHandler(auth, path);
+    if (auth.confirmPassword) {
+      if (auth.password !== auth.confirmPassword) {
+        setPassMessage(<p className="warning">Passwords do not match. </p>);
+      } else {
+        setPassMessage(null);
 
-    if (response.user) {
-      accountInit(response);
-    } else {
-      setAuthError(<p className="warning">{response}</p>);
+        const response = await authHandler(auth, path);
+
+        if (response.user) {
+          accountInit(response);
+        } else {
+          setAuthError(<p className="warning">{response}</p>);
+        }
+      }
     }
   };
 
@@ -113,6 +122,15 @@ const Auth = ({ accountInit }) => {
           required={true}
           minPass={6}
         />
+        <FormInput
+          id="confirmPassword"
+          type="password"
+          name="Confirm Password"
+          changeHandler={onChangeHandler}
+          required={true}
+          minPass={6}
+        />
+        {passMessage && passMessage}
         <Button styling={'button-success'}>
           {isLoggingIn ? 'Log In' : 'Sign Up'}
         </Button>
