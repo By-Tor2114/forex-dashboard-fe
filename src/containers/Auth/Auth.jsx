@@ -12,7 +12,7 @@ const Auth = ({ accountInit }) => {
   const [auth, setAuth] = useState({});
   const [authError, setAuthError] = useState(null);
 
-  const onChangeHandler = event => {
+  const onChangeHandler = (event) => {
     setAuth({ ...auth, [event.target.id]: event.target.value });
   };
 
@@ -23,7 +23,7 @@ const Auth = ({ accountInit }) => {
     setAuthError(null);
   };
 
-  const onSubmitHandler = async event => {
+  const onSubmitHandler = async (event) => {
     event.preventDefault();
 
     const response = await authHandler(auth, path);
@@ -111,6 +111,7 @@ const Auth = ({ accountInit }) => {
           name="Password"
           changeHandler={onChangeHandler}
           required={true}
+          minPass={6}
         />
         <Button styling={'button-success'}>
           {isLoggingIn ? 'Log In' : 'Sign Up'}

@@ -10,7 +10,8 @@ const FormInput = ({
   placeholder,
   required,
   options,
-  value
+  value,
+  minPass,
 }) => {
   let inputType;
 
@@ -62,6 +63,7 @@ const FormInput = ({
           required={required}
           onChange={changeHandler}
           value={value}
+          minLength={minPass}
         />
       </Fragment>
     );
