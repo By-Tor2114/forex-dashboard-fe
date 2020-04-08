@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react';
+import axios from 'axios';
 
 import FormInput from '../FormInput/FormInput';
 import AppContext from '../../context/context';
 import { addEditDeleteTrade } from '../../utils/add-edit-delete-trade';
 import Button from '../Button/Button';
 import './AddEditTradeModal.css';
+import AddImage from '../AddImage/AddImage';
 
 const AddEditTradeModal = ({
   toggle,
@@ -31,6 +33,7 @@ const AddEditTradeModal = ({
   const [postTrade, setPostTrade] = useState({});
   const [disableButton, setDisableButton] = useState(true);
   const [updateMessage, setUpdateMessage] = useState(false);
+  console.log(postTrade);
 
   const onChangeHandler = (event) => {
     setPostTrade({
@@ -51,11 +54,34 @@ const AddEditTradeModal = ({
       : setDisableButton(false);
   };
 
-  const onSubmitHandler = async (event) => {
-    const deleteEvent = event.target.textContent.split(' ')[0];
-    console.log(deleteEvent);
-
+  const uploadImage = async (event) => {
     event.preventDefault();
+
+    const files = event.target.files;
+
+    let fileData = new FormData();
+
+    fileData.append('file', files[0]);
+    fileData.append('upload_preset', 'fx-dashboard');
+
+    try {
+      const { data } = await axios.post(
+        'https://api.cloudinary.com/v1_1/dbspfwtzp/image/upload',
+        fileData
+      );
+
+      setPostTrade({
+        ...postTrade,
+        imageURL: data.secure_url,
+      });
+    } catch (error) {
+      console.dir(error, 'cloud error');
+    }
+  };
+
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
+    console.log(postTrade, 'in submit handler');
 
     const response = await addEditDeleteTrade(
       postTrade,
@@ -63,15 +89,12 @@ const AddEditTradeModal = ({
       method,
       _id
     );
-
     console.log(response, '<==== response');
-
     if (response) {
       setUpdateMessage(true);
       setUpdateTrades(!updateTrades);
       context.setUpdateCharts(!context.updateCharts);
     }
-
     setPostTrade({});
   };
 
@@ -205,6 +228,13 @@ const AddEditTradeModal = ({
           name="Date Closed (required)"
           required={!trade.outcome && true}
           value={dateClosed && dateClosed.slice(0, 10)}
+        />
+        <AddImage
+          changeHandler={uploadImage}
+          id="image-file"
+          type="file"
+          value="Upload Image"
+          styling="custom-input"
         />
         <FormInput
           changeHandler={onChangeHandler}

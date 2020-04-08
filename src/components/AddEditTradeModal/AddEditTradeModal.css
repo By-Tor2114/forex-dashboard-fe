@@ -23,3 +23,10 @@
     right: 30%;
   }
 }
+
+@media only screen and (max-width: 330px) {
+  .AddEditTradeModal {
+    left: 8%;
+    right: 8%;
+  }
+}
