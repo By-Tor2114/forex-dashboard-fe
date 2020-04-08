@@ -74,6 +74,8 @@ const AddEditTradeModal = ({
         ...postTrade,
         imageURL: data.secure_url,
       });
+
+      formChecker({ ...postTrade, imageURL: data.secure_url });
     } catch (error) {
       console.dir(error, 'cloud error');
     }
