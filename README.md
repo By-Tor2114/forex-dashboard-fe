@@ -12,4 +12,4 @@ https://fx-dashboard.netlify.com/
 
 ## Back End Repo:
 
-https://github.com/By-Tor2114/forex-dashboard
+The backend repo is currently set to private, as I am making ongoing changes whilst the app progresses.
