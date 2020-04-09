@@ -17,6 +17,7 @@
 }
 
 .AddEditTradeModal img {
+  margin-top: 20px;
   height: 200px;
   width: auto;
   cursor: pointer;
