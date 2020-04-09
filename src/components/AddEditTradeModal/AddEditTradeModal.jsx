@@ -28,12 +28,12 @@ const AddEditTradeModal = ({
     tradeNotes,
     tradeDirection,
     _id,
+    imageURL,
   } = trade;
 
   const [postTrade, setPostTrade] = useState({});
   const [disableButton, setDisableButton] = useState(true);
   const [updateMessage, setUpdateMessage] = useState(false);
-  console.log(postTrade);
 
   const onChangeHandler = (event) => {
     setPostTrade({
@@ -83,7 +83,6 @@ const AddEditTradeModal = ({
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    console.log(postTrade, 'in submit handler');
 
     const response = await addEditDeleteTrade(
       postTrade,
@@ -235,9 +234,13 @@ const AddEditTradeModal = ({
           changeHandler={uploadImage}
           id="image-file"
           type="file"
-          value="Upload Image"
+          value={imageURL ? 'Change Image' : 'Upload Image'}
           styling="custom-input"
         />
+        {imageURL && <img src={imageURL} alt="" />}
+        {imageURL && (
+          <p className="span-highlight mini-message">Click image to enlarge</p>
+        )}
         <FormInput
           changeHandler={onChangeHandler}
           id="tradeNotes"

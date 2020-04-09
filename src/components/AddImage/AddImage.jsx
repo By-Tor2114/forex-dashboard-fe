@@ -8,7 +8,7 @@ const AddImage = ({ changeHandler, type, id, name, value, styling }) => {
       <label onChange={changeHandler} htmlFor={name}>
         {value}
         <input className={styling} type={type} id={id} name={name} />
-        <span>Upload Image</span>
+        <span>{value}</span>
       </label>
     </div>
   );

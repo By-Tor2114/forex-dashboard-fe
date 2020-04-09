@@ -16,6 +16,23 @@
   color: rgb(108, 138, 206);
 }
 
+.AddEditTradeModal img {
+  height: 200px;
+  width: auto;
+  cursor: pointer;
+}
+
+.AddEditTradeModal .mini-message {
+  width: 200px;
+  margin: 20px auto;
+  cursor: default;
+}
+
+.AddEditTradeModal .mini-message:hover {
+  color: rgb(167, 184, 231);
+  background-color: #b1b1b110;
+}
+
 @media only screen and (min-width: 1600px) {
   .AddEditTradeModal {
     top: 10%;
