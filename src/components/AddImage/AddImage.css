@@ -1,3 +1,7 @@
+.AddImage {
+  position: relative;
+}
+
 .AddImage label {
   display: flex;
   flex-direction: column;

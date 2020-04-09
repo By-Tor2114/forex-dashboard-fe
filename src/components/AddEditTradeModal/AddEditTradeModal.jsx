@@ -75,6 +75,8 @@ const AddEditTradeModal = ({
         imageURL: data.secure_url,
       });
 
+      trade.imageURL = data.secure_url;
+
       formChecker({ ...postTrade, imageURL: data.secure_url });
     } catch (error) {
       console.dir(error, 'cloud error');
@@ -113,10 +115,6 @@ const AddEditTradeModal = ({
       setUpdateTrades(!updateTrades);
       context.setUpdateCharts(!context.updateCharts);
     }
-  };
-
-  const imageModalToggler = (event) => {
-    event.preventDefault();
   };
 
   let saveChanges;
@@ -243,10 +241,17 @@ const AddEditTradeModal = ({
           type="file"
           value={imageURL ? 'Change Image' : 'Upload Image'}
           styling="custom-input"
+          imageURL={imageURL}
         />
-        {imageURL && <img src={imageURL} alt="" />}
         {imageURL && (
-          <p className="span-highlight mini-message">Click image to enlarge</p>
+          <a href={imageURL} target="_blank" rel="noopener noreferrer">
+            <img src={imageURL} alt="" />
+          </a>
+        )}
+        {imageURL && (
+          <p className="span-highlight mini-message">
+            Click image to open full-size in a new tab
+          </p>
         )}
         <FormInput
           changeHandler={onChangeHandler}
