@@ -115,6 +115,10 @@ const AddEditTradeModal = ({
     }
   };
 
+  const imageModalToggler = (event) => {
+    event.preventDefault();
+  };
+
   let saveChanges;
 
   if (updateMessage) {
@@ -176,6 +180,7 @@ const AddEditTradeModal = ({
           name="Profit/Loss (required)"
           placeholder={profitLoss || '{exclude swap/commission}'}
           required={!trade.outcome && true}
+          step={'0.01'}
         />
         <FormInput
           changeHandler={onChangeHandler}
@@ -198,6 +203,7 @@ const AddEditTradeModal = ({
           name="Swap (optional)"
           placeholder={swap || 'example: -22.50 || 22.50'}
           required={false}
+          step={'0.01'}
         />
         <FormInput
           changeHandler={onChangeHandler}
@@ -206,6 +212,7 @@ const AddEditTradeModal = ({
           name="Commission (optional)"
           placeholder={commission || 'example: 15.73'}
           required={false}
+          step={'0.01'}
         />{' '}
         <FormInput
           changeHandler={onChangeHandler}

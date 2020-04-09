@@ -12,6 +12,7 @@ const FormInput = ({
   options,
   value,
   minPass,
+  step,
 }) => {
   let inputType;
 
@@ -64,6 +65,7 @@ const FormInput = ({
           onChange={changeHandler}
           value={value}
           minLength={minPass}
+          step={step}
         />
       </Fragment>
     );
