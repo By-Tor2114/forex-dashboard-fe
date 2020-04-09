@@ -5,6 +5,7 @@ import Button from '../../components/Button/Button';
 
 import { authHandler } from '../../utils/signup.-login';
 import './Auth.css';
+import Spinner from '../../components/Spinner/Spinner';
 
 const Auth = ({ accountInit }) => {
   const [isLoggingIn, setIsLoggingIn] = useState(true);
@@ -12,6 +13,7 @@ const Auth = ({ accountInit }) => {
   const [auth, setAuth] = useState({});
   const [authError, setAuthError] = useState(null);
   const [passMessage, setPassMessage] = useState(null);
+  const [showSpinner, setShowSpinner] = useState(false);
 
   const onChangeHandler = (event) => {
     setAuth({ ...auth, [event.target.id]: event.target.value });
@@ -27,6 +29,7 @@ const Auth = ({ accountInit }) => {
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     console.log(path);
+    setShowSpinner(true);
 
     if (path === 'signup' && auth.confirmPassword) {
       if (auth.password !== auth.confirmPassword) {
@@ -57,6 +60,7 @@ const Auth = ({ accountInit }) => {
 
   const authMessage = isLoggingIn ? (
     <Fragment>
+      {showSpinner && !authError && <Spinner />}
       <p>Don't have an account? </p>
       <p>
         <span onClick={loginToggler} className="span-highlight">
@@ -66,6 +70,7 @@ const Auth = ({ accountInit }) => {
     </Fragment>
   ) : (
     <Fragment>
+      {showSpinner && !authError && <Spinner />}
       <p>Already have an account? </p>
       <p>
         <span onClick={loginToggler} className="span-highlight">
