@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './Pending.css';
 import Button from '../../components/Button/Button';
 import { getPending } from '../../utils/get-pending';
+import { dateFormatter } from '../../utils/helper-funcs';
 
 const Pending = ({ token }) => {
   const [pendingTrades, setPendingTrades] = useState([]);
@@ -25,8 +26,24 @@ const Pending = ({ token }) => {
           Pending Trade
           <span className="span-green">$</span>
         </h2>
-        <Button styling={'hide-list'}>Show Pending</Button>
+        <Button styling={'button-add'}>Add Pending</Button>
       </div>
+      <ul>
+        {pendingTrades.map((trade, index) => (
+          <li key={index} className="pending-list">
+            <div>
+              <p>{trade.currencyPair}</p>
+              <p>{trade.tradeDirection}</p>
+            </div>
+            <div>
+              <p>Posted: {dateFormatter(trade.datePosted)}</p>
+            </div>
+            <div>
+              <p className="view-trade">View Trade</p>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
