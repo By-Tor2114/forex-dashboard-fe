@@ -7,6 +7,7 @@ import { AppProvider } from './context/context';
 import './App.css';
 import TradeHistory from './containers/TradeHistory/TradeHistory';
 import Charts from './containers/Charts/Charts';
+import Pending from './containers/Pending/Pending';
 
 const App = () => {
   // Checks if user has token, amends routes accordingly
@@ -49,6 +50,7 @@ const App = () => {
           user={token.user}
           updateCharts={updateCharts}
         />
+        <Pending token={token.user.token} />
       </Fragment>
     );
   } else {

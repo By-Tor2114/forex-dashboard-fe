@@ -1,0 +1,33 @@
+.Pending {
+  color: #f4f4f4;
+}
+
+.Pending .pending-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 1rem;
+}
+
+@media only screen and (max-width: 2000px) {
+  .Pending .pending-head {
+    justify-content: space-between;
+    width: 70%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .Pending .pending-head {
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .Pending .pending-head {
+    width: 97%;
+    margin: 0 auto;
+  }
+}
