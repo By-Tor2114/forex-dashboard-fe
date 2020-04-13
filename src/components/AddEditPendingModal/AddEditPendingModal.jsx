@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './AddEditPendingModal.css';
 import FormInput from '../FormInput/FormInput';
@@ -13,14 +13,35 @@ const AddEditPendingModal = ({
   toggle,
 }) => {
   const {
-    _id,
-    createdBy,
     datePosted,
     currencyPair,
     tradeNotes,
     tradeDirection,
     imageURL,
   } = trade;
+
+  const [postTrade, setPostTrade] = useState({});
+  const [disableButton, setDisableButton] = useState(true);
+  const [updateMessage, setUpdateMessage] = useState(false);
+
+  const onChangeHandler = (event) => {
+    setPostTrade({
+      ...postTrade,
+      [event.target.id]: event.target.value,
+    });
+
+    formChecker({ ...postTrade, [event.target.id]: event.target.value });
+  };
+
+  const formChecker = (updates) => {
+    const checked = Object.values(updates).find((elem) => elem.length > 0);
+
+    setUpdateMessage(false);
+
+    return checked === undefined
+      ? setDisableButton(true)
+      : setDisableButton(false);
+  };
 
   return (
     <div className="AddEditPendingModal">
@@ -35,6 +56,7 @@ const AddEditPendingModal = ({
         )}
 
         <FormInput
+          changeHandler={onChangeHandler}
           id="currencyPair"
           type="text"
           name="Currency Pair (required)"
@@ -43,6 +65,7 @@ const AddEditPendingModal = ({
         />
 
         <FormInput
+          changeHandler={onChangeHandler}
           id="datePosted"
           type="date"
           name={'Date Posted (required)'}
@@ -51,6 +74,7 @@ const AddEditPendingModal = ({
         />
 
         <FormInput
+          changeHandler={onChangeHandler}
           id="tradeDirection"
           type="select"
           name="Trade Direction (required)"
@@ -84,6 +108,7 @@ const AddEditPendingModal = ({
         )}
 
         <FormInput
+          changeHandler={onChangeHandler}
           id="tradeNotes"
           type="textarea"
           name="Trade Notes (optional)"
