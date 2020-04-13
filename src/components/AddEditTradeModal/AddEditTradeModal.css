@@ -16,16 +16,24 @@
   color: rgb(108, 138, 206);
 }
 
+.AddEditTradeModal .image-div {
+  /* height: 150px; */
+  /* width: 213px; */
+}
+
 .AddEditTradeModal img {
-  margin-top: 20px;
-  height: 200px;
+  display: block;
+  max-width: 230px;
+  max-height: 95px;
   width: auto;
+  height: auto;
+  margin: 0 auto;
   cursor: pointer;
 }
 
 .AddEditTradeModal .mini-message {
-  width: 200px;
-  margin: 20px auto;
+  width: 190px;
+  margin: 10px auto;
   cursor: default;
 }
 

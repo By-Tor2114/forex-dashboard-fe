@@ -76,10 +76,13 @@ const AddEditPendingModal = ({
             <a href={imageURL} target="_blank" rel="noopener noreferrer">
               <img src={imageURL} alt="" />
             </a>
-            <p className="span-highlight mini-message">
-              Click image to open full-size in a new tab
-            </p>
           </div>
+        )}
+
+        {imageURL && (
+          <p className="span-highlight mini-message">
+            Click image to open full-size in a new tab
+          </p>
         )}
 
         <FormInput
