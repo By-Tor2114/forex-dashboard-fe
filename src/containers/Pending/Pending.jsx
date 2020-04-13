@@ -73,7 +73,15 @@ const Pending = ({ token }) => {
           </li>
         ))}
       </ul>
-      {showViewPendingModal && <AddEditPendingModal />}
+      {showViewPendingModal && (
+        <AddEditPendingModal
+          method={method}
+          trade={singleTrade}
+          updateTrades={updateTrades}
+          setUpdateTrades={setUpdateTrades}
+          toggle={viewPendingModal}
+        />
+      )}
     </div>
   );
 };

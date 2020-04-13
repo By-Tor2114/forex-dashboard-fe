@@ -2,8 +2,8 @@
   color: white;
   position: absolute;
   background-color: #000000;
-  top: 15%;
-  bottom: 10%;
+  top: 0;
+  bottom: 5%;
   left: 15%;
   right: 15%;
   border-radius: 5px;
@@ -16,15 +16,18 @@
   color: rgb(108, 138, 206);
 }
 
-.AddEditPendingModal img {
-  margin-top: 20px;
+.AddEditPendingModal .image-div {
   height: 200px;
-  width: auto;
+  width: 213px;
+}
+
+.AddEditPendingModal img {
+  width: 100%;
   cursor: pointer;
 }
 
 .AddEditPendingModal .mini-message {
-  width: 200px;
+  width: 190px;
   margin: 20px auto;
   cursor: default;
 }

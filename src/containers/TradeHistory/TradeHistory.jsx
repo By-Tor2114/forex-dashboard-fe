@@ -21,7 +21,7 @@ const TradeHistory = ({ token, user }) => {
   const [showAddTradeModal, setShowAddTradeModal] = useState(false);
   const [updateTrades, setUpdateTrades] = useState(false);
 
-  // Show view trade modal and sets individual trade for modal
+  // Show view/edit trade modal and sets individual trade for modal
   const [showViewTradeModal, setShowViewTradeModal] = useState(false);
   const [singleTrade, setSingleTrade] = useState({});
 

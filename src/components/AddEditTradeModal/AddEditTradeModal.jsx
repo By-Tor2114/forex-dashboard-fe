@@ -244,14 +244,14 @@ const AddEditTradeModal = ({
           imageURL={imageURL}
         />
         {imageURL && (
-          <a href={imageURL} target="_blank" rel="noopener noreferrer">
-            <img src={imageURL} alt="" />
-          </a>
-        )}
-        {imageURL && (
-          <p className="span-highlight mini-message">
-            Click image to open full-size in a new tab
-          </p>
+          <div>
+            <a href={imageURL} target="_blank" rel="noopener noreferrer">
+              <img src={imageURL} alt="" />
+            </a>
+            <p className="span-highlight mini-message">
+              Click image to open full-size in a new tab
+            </p>
+          </div>
         )}
         <FormInput
           changeHandler={onChangeHandler}
