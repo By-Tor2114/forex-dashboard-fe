@@ -1,0 +1,45 @@
+.AddEditPendingModal {
+  color: white;
+  position: absolute;
+  background-color: #000000;
+  top: 15%;
+  bottom: 10%;
+  left: 15%;
+  right: 15%;
+  border-radius: 5px;
+  padding: 20px;
+  overflow-y: scroll;
+  z-index: 1;
+}
+
+.AddEditPendingModal .trade-modal-header {
+  color: rgb(108, 138, 206);
+}
+
+.AddEditPendingModal img {
+  margin-top: 20px;
+  height: 200px;
+  width: auto;
+  cursor: pointer;
+}
+
+.AddEditPendingModal .mini-message {
+  width: 200px;
+  margin: 20px auto;
+  cursor: default;
+}
+
+@media only screen and (min-width: 1600px) {
+  .AddEditPendingModal {
+    top: 10%;
+    left: 30%;
+    right: 30%;
+  }
+}
+
+@media only screen and (max-width: 330px) {
+  .AddEditPendingModal {
+    left: 8%;
+    right: 8%;
+  }
+}
