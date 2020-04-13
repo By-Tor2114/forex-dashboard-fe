@@ -16,15 +16,12 @@
   color: rgb(108, 138, 206);
 }
 
-.AddEditPendingModal .image-div {
-  height: 200px;
-  width: 213px;
-}
-
 .AddEditPendingModal img {
   display: block;
-  height: 100%;
-  cursor: pointer;
+  max-width: 230px;
+  max-height: 95px;
+  width: auto;
+  height: auto;
   margin: 0 auto;
   cursor: pointer;
 }

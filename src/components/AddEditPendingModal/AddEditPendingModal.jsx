@@ -21,6 +21,7 @@ const AddEditPendingModal = ({
     tradeDirection,
     imageURL,
   } = trade;
+
   return (
     <div className="AddEditPendingModal">
       <div onClick={toggle} className="modal-closer">
@@ -72,11 +73,9 @@ const AddEditPendingModal = ({
         />
 
         {imageURL && (
-          <div className="image-div">
-            <a href={imageURL} target="_blank" rel="noopener noreferrer">
-              <img src={imageURL} alt="" />
-            </a>
-          </div>
+          <a href={imageURL} target="_blank" rel="noopener noreferrer">
+            <img src={imageURL} alt="" />
+          </a>
         )}
 
         {imageURL && (

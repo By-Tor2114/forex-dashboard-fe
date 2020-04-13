@@ -16,11 +16,6 @@
   color: rgb(108, 138, 206);
 }
 
-.AddEditTradeModal .image-div {
-  /* height: 150px; */
-  /* width: 213px; */
-}
-
 .AddEditTradeModal img {
   display: block;
   max-width: 230px;

@@ -32,6 +32,12 @@ const Pending = ({ token }) => {
     setShowViewPendingModal(!showViewPendingModal);
   };
 
+  const listToggler = (event) => {
+    event.preventDefault();
+    setShowViewPendingModal(false);
+    setShowTrades(!showTrades);
+  };
+
   useEffect(() => {
     const fetchPendings = async () => {
       const { pendings } = await getPending(token);
@@ -43,15 +49,10 @@ const Pending = ({ token }) => {
     fetchPendings();
   }, [token]);
 
-  return (
-    <div className="Pending">
-      <div className="pending-head">
-        <h2>
-          Pending Trade
-          <span className="span-green">$</span>
-        </h2>
-        <Button styling={'button-add'}>Add Pending</Button>
-      </div>
+  let list;
+
+  if (showTrades) {
+    list = (
       <ul>
         {pendingTrades.map((trade, index) => (
           <li key={index} className="pending-list">
@@ -73,6 +74,26 @@ const Pending = ({ token }) => {
           </li>
         ))}
       </ul>
+    );
+  } else {
+    list = null;
+  }
+
+  return (
+    <div className="Pending">
+      <div className="pending-head">
+        <h2>
+          Pending Trade
+          <span className="span-green">$</span>
+        </h2>
+        <Button styling={'button-add'}>Add Pending</Button>
+      </div>
+      <div className="list-head">
+        <Button toggle={listToggler} styling="hide-list">
+          {showTrades ? 'Hide' : 'Show'} Trade List
+        </Button>
+      </div>
+      {list}
       {showViewPendingModal && (
         <AddEditPendingModal
           method={method}
