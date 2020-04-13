@@ -22,7 +22,16 @@ const Pending = ({ token }) => {
   const [showAddPendingModal, setShowAddPendingModal] = useState(false);
   const [updateTrades, setUpdateTrades] = useState(false);
 
-  const addPendingModal = (event) => {};
+  const addPendingModal = (event) => {
+    console.log('here');
+
+    event.preventDefault();
+    setMethod('POST');
+    setSingleTrade({});
+    setShowTrades(true);
+    setShowViewPendingModal(false);
+    setShowAddPendingModal(!showAddPendingModal);
+  };
 
   const viewPendingModal = (event, trade) => {
     event.preventDefault();
@@ -56,14 +65,14 @@ const Pending = ({ token }) => {
       <ul>
         {pendingTrades.map((trade, index) => (
           <li key={index} className="pending-list">
-            <div>
+            <div className="pending-boxes">
               <p>{trade.currencyPair}</p>
               <p>{trade.tradeDirection}</p>
             </div>
-            <div>
+            <div className="pending-boxes">
               <p>Posted: {dateFormatter(trade.datePosted)}</p>
             </div>
-            <div>
+            <div className="pending-boxes">
               <p
                 onClick={(event) => viewPendingModal(event, trade)}
                 className="view-trade"
@@ -73,6 +82,16 @@ const Pending = ({ token }) => {
             </div>
           </li>
         ))}
+
+        {showAddPendingModal && (
+          <AddEditPendingModal
+            updateTrades={updateTrades}
+            setUpdateTrades={setUpdateTrades}
+            toggle={addPendingModal}
+            trade={singleTrade}
+            method={method}
+          />
+        )}
       </ul>
     );
   } else {
@@ -86,7 +105,9 @@ const Pending = ({ token }) => {
           Pending Trade
           <span className="span-green">$</span>
         </h2>
-        <Button styling={'button-add'}>Add Pending</Button>
+        <Button toggle={addPendingModal} styling={'button-add'}>
+          Add Pending
+        </Button>
       </div>
       <div className="list-head">
         <Button toggle={listToggler} styling="hide-list">

@@ -31,7 +31,7 @@ const AddEditPendingModal = ({
         {method === 'PATCH' ? (
           <h2 className="trade-modal-header">View/Edit Trade</h2>
         ) : (
-          <h2 className="trade-modal-header">Add Trade</h2>
+          <h2 className="trade-modal-header">Add Pending Trade</h2>
         )}
 
         <FormInput
@@ -51,7 +51,6 @@ const AddEditPendingModal = ({
         />
 
         <FormInput
-          id="tradeDirection"
           id="tradeDirection"
           type="select"
           name="Trade Direction (required)"

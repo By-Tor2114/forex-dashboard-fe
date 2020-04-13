@@ -106,6 +106,8 @@ const TradeHistory = ({ token, user }) => {
             </div>
           </li>
         ))}
+
+        {/* Modal for ADDING a trade */}
         {showAddTradeModal && (
           <AddEditTradeModal
             updateTrades={updateTrades}
@@ -150,6 +152,7 @@ const TradeHistory = ({ token, user }) => {
 
       {list}
 
+      {/* Modal for viewing/editing trade */}
       {showViewTradeModal && (
         <AddEditTradeModal
           method={method}
