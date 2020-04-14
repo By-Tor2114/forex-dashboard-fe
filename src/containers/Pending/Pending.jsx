@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
 import './Pending.css';
 import Button from '../../components/Button/Button';
 import { getPending } from '../../utils/get-pending';
 import { dateFormatter } from '../../utils/helper-funcs';
 import AddEditPendingModal from '../../components/AddEditPendingModal/AddEditPendingModal';
+import AppContext from '../../context/context';
 
 const Pending = ({ token }) => {
+  // CONTEXT
+  const context = useContext(AppContext);
+
   // Inital array of pending trades
   const [pendingTrades, setPendingTrades] = useState([]);
 
@@ -54,7 +58,7 @@ const Pending = ({ token }) => {
       setPendingTrades(pendings);
     };
     fetchPendings();
-  }, [token]);
+  }, [token, updateTrades, context.trades]);
 
   let list;
 
