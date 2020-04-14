@@ -66,6 +66,22 @@ const AddEditPendingModal = ({
     setPostTrade({});
   };
 
+  const deleteTradeHandler = async (event) => {
+    event.preventDefault();
+    const deleted = await addEditDeletePending(
+      null,
+      context.token.user.token,
+      'DELETE',
+      _id
+    );
+    console.log(deleted);
+
+    if (deleted) {
+      setUpdateTrades(!updateTrades);
+      context.setUpdateCharts(!context.updateCharts);
+    }
+  };
+
   let saveChanges;
 
   if (updateMessage) {
@@ -163,6 +179,12 @@ const AddEditPendingModal = ({
         />
 
         {saveChanges}
+
+        {trade.currencyPair && (
+          <Button toggle={deleteTradeHandler} styling="button-delete">
+            Delete Trade
+          </Button>
+        )}
 
         <Button toggle={toggle} styling="button-cancel">
           Close Window
