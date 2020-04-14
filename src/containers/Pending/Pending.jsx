@@ -22,7 +22,7 @@ const Pending = ({ token }) => {
   const [singleTrade, setSingleTrade] = useState({});
 
   // Show trade list, add trade modal and refreshes trade list
-  const [showTrades, setShowTrades] = useState(false);
+  const [showTrades, setShowTrades] = useState(true);
   const [showAddPendingModal, setShowAddPendingModal] = useState(false);
   const [updateTrades, setUpdateTrades] = useState(false);
 
