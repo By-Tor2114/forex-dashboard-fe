@@ -1,11 +1,13 @@
 import React, { useState, useContext } from 'react';
+import axios from 'axios';
 
-import './AddEditPendingModal.css';
 import FormInput from '../FormInput/FormInput';
 import AddImage from '../AddImage/AddImage';
 import Button from '../Button/Button';
 import AppContext from '../../context/context';
 import { addEditDeletePending } from '../../utils/add-edit-delete-pending';
+
+import './AddEditPendingModal.css';
 
 const AddEditPendingModal = ({
   method,
@@ -46,6 +48,35 @@ const AddEditPendingModal = ({
     return checked === undefined
       ? setDisableButton(true)
       : setDisableButton(false);
+  };
+
+  const uploadImage = async (event) => {
+    event.preventDefault();
+
+    const files = event.target.files;
+
+    let fileData = new FormData();
+
+    fileData.append('file', files[0]);
+    fileData.append('upload_preset', 'fx-dashboard');
+
+    try {
+      const { data } = await axios.post(
+        'https://api.cloudinary.com/v1_1/dbspfwtzp/image/upload',
+        fileData
+      );
+
+      setPostTrade({
+        ...postTrade,
+        imageURL: data.secure_url,
+      });
+
+      trade.imageURL = data.secure_url;
+
+      formChecker({ ...postTrade, imageURL: data.secure_url });
+    } catch (error) {
+      console.dir(error, 'cloud error');
+    }
   };
 
   const onSubmitHandler = async (event) => {
@@ -148,6 +179,7 @@ const AddEditPendingModal = ({
         />
 
         <AddImage
+          changeHandler={uploadImage}
           id="image-file"
           type="file"
           value={imageURL ? 'Change Image' : 'Upload Image'}
