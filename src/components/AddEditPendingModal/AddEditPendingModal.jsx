@@ -82,7 +82,7 @@ const AddEditPendingModal = ({
         disableBool={disableButton ? true : false}
         styling={disableButton ? 'button-greyed-out' : 'button-success'}
       >
-        {trade.outcome ? 'Update Trade' : 'Add Trade'}
+        {trade.datePosted ? 'Update Trade' : 'Add Trade'}
       </Button>
     );
   }
@@ -105,7 +105,7 @@ const AddEditPendingModal = ({
           type="text"
           name="Currency Pair (required)"
           placeholder={currencyPair || 'example: EUR/USD'}
-          required
+          required={!trade.currencyPair && true}
         />
 
         <FormInput
