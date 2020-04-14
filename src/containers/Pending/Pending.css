@@ -74,6 +74,10 @@
   .Pending .list-head {
     width: 85%;
   }
+
+  .Pending ul {
+    width: 63%;
+  }
 }
 
 @media only screen and (max-width: 1200px) {
