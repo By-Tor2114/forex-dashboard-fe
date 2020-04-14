@@ -23,8 +23,6 @@ const Pending = ({ token }) => {
   const [updateTrades, setUpdateTrades] = useState(false);
 
   const addPendingModal = (event) => {
-    console.log('here');
-
     event.preventDefault();
     setMethod('POST');
     setSingleTrade({});

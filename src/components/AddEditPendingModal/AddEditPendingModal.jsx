@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import './AddEditPendingModal.css';
 import FormInput from '../FormInput/FormInput';
 import AddImage from '../AddImage/AddImage';
 import Button from '../Button/Button';
+import AppContext from '../../context/context';
+import { addEditDeletePending } from '../../utils/add-edit-delete-pending';
 
 const AddEditPendingModal = ({
   method,
@@ -12,7 +14,10 @@ const AddEditPendingModal = ({
   setUpdateTrades,
   toggle,
 }) => {
+  const context = useContext(AppContext);
+
   const {
+    _id,
     datePosted,
     currencyPair,
     tradeNotes,
@@ -43,12 +48,51 @@ const AddEditPendingModal = ({
       : setDisableButton(false);
   };
 
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
+
+    const response = await addEditDeletePending(
+      postTrade,
+      context.token.user.token,
+      method,
+      _id
+    );
+    console.log(response, '<==== response');
+    if (response) {
+      setUpdateMessage(true);
+      setUpdateTrades(!updateTrades);
+      context.setUpdateCharts(!context.updateCharts);
+    }
+    setPostTrade({});
+  };
+
+  let saveChanges;
+
+  if (updateMessage) {
+    saveChanges = (
+      <p className="span-green font-size-2">
+        {trade.outcome
+          ? 'Trade updated successfully'
+          : 'Trade added sucessfully'}
+      </p>
+    );
+  } else {
+    saveChanges = (
+      <Button
+        disableBool={disableButton ? true : false}
+        styling={disableButton ? 'button-greyed-out' : 'button-success'}
+      >
+        {trade.outcome ? 'Update Trade' : 'Add Trade'}
+      </Button>
+    );
+  }
+
   return (
     <div className="AddEditPendingModal">
       <div onClick={toggle} className="modal-closer">
         <h2>X</h2>
       </div>
-      <form>
+      <form onSubmit={onSubmitHandler}>
         {method === 'PATCH' ? (
           <h2 className="trade-modal-header">View/Edit Trade</h2>
         ) : (
@@ -117,6 +161,9 @@ const AddEditPendingModal = ({
           }
           required={false}
         />
+
+        {saveChanges}
+
         <Button toggle={toggle} styling="button-cancel">
           Close Window
         </Button>

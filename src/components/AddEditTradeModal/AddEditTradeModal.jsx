@@ -15,7 +15,9 @@ const AddEditTradeModal = ({
   method,
   trade,
 }) => {
+  // CONTEXT
   const context = useContext(AppContext);
+
   const {
     currencyPair,
     outcome,
