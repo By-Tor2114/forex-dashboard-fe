@@ -17,8 +17,8 @@ const Modal = ({ toggle }) => {
   const [disableButton, setDisableButton] = useState(true);
   const [updateMessage, setUpdateMessage] = useState(false);
 
-  const formChecker = updates => {
-    const checked = Object.values(updates).find(elem => elem.length > 0);
+  const formChecker = (updates) => {
+    const checked = Object.values(updates).find((elem) => elem.length > 0);
 
     setUpdateMessage(false);
 
@@ -27,18 +27,21 @@ const Modal = ({ toggle }) => {
       : setDisableButton(false);
   };
 
-  const onChangeHandler = event => {
+  const onChangeHandler = (event) => {
     setProfileUpdate({
-      update: { ...profileUpdate.update, [event.target.id]: event.target.value }
+      update: {
+        ...profileUpdate.update,
+        [event.target.id]: event.target.value,
+      },
     });
 
     formChecker({
       ...profileUpdate.update,
-      [event.target.id]: event.target.value
+      [event.target.id]: event.target.value,
     });
   };
 
-  const onSubmitHandler = async event => {
+  const onSubmitHandler = async (event) => {
     event.preventDefault();
 
     const response = await updateUser(profileUpdate, context.token.user);
@@ -97,6 +100,7 @@ const Modal = ({ toggle }) => {
           name={'Account Balance'}
           type="number"
           placeholder={accountBalance}
+          step={'0.01'}
         />
         {saveChanges}
         <Button toggle={toggle} styling="button-cancel">
