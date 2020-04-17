@@ -71,6 +71,10 @@
     margin: 0 auto;
   }
 
+  .Pending ul li div {
+    width: 100%;
+  }
+
   .Pending .list-head {
     width: 85%;
   }
