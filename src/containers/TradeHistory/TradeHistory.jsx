@@ -43,6 +43,7 @@ const TradeHistory = ({ token, user }) => {
 
     const fetchTrades = async () => {
       const { trades } = await getTrades(token);
+      console.log(trades, '<------ result');
 
       trades.sort((a, b) => new Date(a.dateOpened) - new Date(b.dateOpened));
 
@@ -81,7 +82,7 @@ const TradeHistory = ({ token, user }) => {
     list = (
       <ul>
         {trades.map((trade, index) => (
-          <li key={index} className="trade-list">
+          <li key={index} className='trade-list'>
             <div className={trade.outcome.toLowerCase()}>
               <p>{trade.currencyPair}</p>
               <p>{trade.outcome} </p>
@@ -99,7 +100,7 @@ const TradeHistory = ({ token, user }) => {
               </p>
               <p
                 onClick={(event) => viewTradeModalToggler(event, trade)}
-                className="view-trade"
+                className='view-trade'
               >
                 View Trade
               </p>
@@ -124,19 +125,19 @@ const TradeHistory = ({ token, user }) => {
   }
 
   return (
-    <div className="TradeHistory">
-      <div className="history-head">
+    <div className='TradeHistory'>
+      <div className='history-head'>
         <h2>
-          Trade Hi<span className="span-green">$</span>tory
+          Trade Hi<span className='span-green'>$</span>tory
         </h2>
-        <Button toggle={addTradeModalToggler} styling="button-add ">
+        <Button toggle={addTradeModalToggler} styling='button-add '>
           Add Trade
         </Button>
       </div>
 
-      <div className="history-balance">
+      <div className='history-balance'>
         {!balance || balance === 0 ? (
-          <p className="span-trade-prompt ml-1">
+          <p className='span-trade-prompt ml-1'>
             Please set balance in 'Update Profile'
           </p>
         ) : (
@@ -144,7 +145,7 @@ const TradeHistory = ({ token, user }) => {
         )}
         {!balance ||
           (balance !== 0 && (
-            <Button toggle={listToggler} styling="hide-list">
+            <Button toggle={listToggler} styling='hide-list'>
               {showTrades ? 'Hide' : 'Show'} Trade List
             </Button>
           ))}
