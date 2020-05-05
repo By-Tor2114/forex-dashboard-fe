@@ -40,6 +40,8 @@ const Charts = ({ token, user, updateCharts }) => {
   useEffect(() => {
     const fetchTrades = async () => {
       const { trades } = await getTrades(token);
+      const test = await getTrades(token);
+      console.log(test, 'in Charts');
 
       trades.sort((a, b) => new Date(a.dateOpened) - new Date(b.dateOpened));
 
@@ -54,33 +56,33 @@ const Charts = ({ token, user, updateCharts }) => {
   if (showStats) {
     list = (
       <Fragment>
-        <div className="chart-container-nav">
+        <div className='chart-container-nav'>
           <span
             onClick={(event) => {
               chartSelector(event);
             }}
           >
-            <Button styling="chart-nav">Equity Chart</Button>
+            <Button styling='chart-nav'>Equity Chart</Button>
           </span>
           <span
             onClick={(event) => {
               chartSelector(event);
             }}
           >
-            <Button styling="chart-nav">By Pair</Button>
+            <Button styling='chart-nav'>By Pair</Button>
           </span>
           <span
             onClick={(event) => {
               chartSelector(event);
             }}
           >
-            <Button styling="chart-nav">By Direction</Button>
+            <Button styling='chart-nav'>By Direction</Button>
           </span>
         </div>
-        <div className="chart-container ">
+        <div className='chart-container '>
           <div>
             {trades.length === 0 ? (
-              <p className="span-trade-prompt mt-2">
+              <p className='span-trade-prompt mt-2'>
                 No trades in Trade History yet
               </p>
             ) : (
@@ -95,12 +97,12 @@ const Charts = ({ token, user, updateCharts }) => {
   }
 
   return (
-    <div className="Charts">
-      <div className="statistics-head">
+    <div className='Charts'>
+      <div className='statistics-head'>
         <h2>
-          Trade <span className="span-green">$</span>tats
+          Trade <span className='span-green'>$</span>tats
         </h2>
-        <Button toggle={listToggler} styling="hide-list">
+        <Button toggle={listToggler} styling='hide-list'>
           {showStats ? 'Hide' : 'Show'} Stats List
         </Button>
       </div>
