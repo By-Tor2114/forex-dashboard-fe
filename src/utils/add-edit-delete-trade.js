@@ -48,8 +48,6 @@ const addEditDeleteTrade = async (update, auth, method, _id) => {
 
       return data.message;
     } catch (error) {
-      console.log(error.response.data.message);
-
       return error.response.data.message;
     }
   }

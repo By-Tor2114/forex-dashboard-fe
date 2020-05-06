@@ -8,13 +8,12 @@ const getTrades = async (token) => {
       params: {},
       headers: { token },
     });
-    console.log(data, '<----- getTrades: data');
 
     return data;
   } catch (error) {
-    console.log(error, '<---- getTrades: error');
-
-    return error.response.data.message;
+    localStorage.removeItem('token');
+    window.location.reload(true);
+    return error.response.data.error;
   }
 };
 

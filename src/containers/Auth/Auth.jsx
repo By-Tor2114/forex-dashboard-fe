@@ -28,12 +28,11 @@ const Auth = ({ accountInit }) => {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    console.log(path);
     setShowSpinner(true);
 
     if (path === 'signup' && auth.confirmPassword) {
       if (auth.password !== auth.confirmPassword) {
-        setPassMessage(<p className="warning">Passwords do not match. </p>);
+        setPassMessage(<p className='warning'>Passwords do not match. </p>);
       } else {
         setPassMessage(null);
 
@@ -42,7 +41,7 @@ const Auth = ({ accountInit }) => {
         if (response.user) {
           accountInit(response);
         } else {
-          setAuthError(<p className="warning">{response}</p>);
+          setAuthError(<p className='warning'>{response}</p>);
         }
       }
     } else {
@@ -53,7 +52,7 @@ const Auth = ({ accountInit }) => {
       if (response.user) {
         accountInit(response);
       } else {
-        setAuthError(<p className="warning">{response}</p>);
+        setAuthError(<p className='warning'>{response}</p>);
       }
     }
   };
@@ -63,7 +62,7 @@ const Auth = ({ accountInit }) => {
       {showSpinner && !authError && <Spinner />}
       <p>Don't have an account? </p>
       <p>
-        <span onClick={loginToggler} className="span-highlight">
+        <span onClick={loginToggler} className='span-highlight'>
           Switch to sign-up
         </span>
       </p>
@@ -73,7 +72,7 @@ const Auth = ({ accountInit }) => {
       {showSpinner && !authError && <Spinner />}
       <p>Already have an account? </p>
       <p>
-        <span onClick={loginToggler} className="span-highlight">
+        <span onClick={loginToggler} className='span-highlight'>
           Switch to login
         </span>
       </p>
@@ -86,20 +85,20 @@ const Auth = ({ accountInit }) => {
     inputLayout = (
       <Fragment>
         <FormInput
-          id="email"
-          type="email"
-          name="Email"
+          id='email'
+          type='email'
+          name='Email'
           changeHandler={onChangeHandler}
           required={true}
         />
         <FormInput
-          id="password"
-          type="password"
-          name="Password"
+          id='password'
+          type='password'
+          name='Password'
           changeHandler={onChangeHandler}
           required={true}
         />
-        <Button styling="button-success">
+        <Button styling='button-success'>
           {isLoggingIn ? 'Log In' : 'Sign Up'}
         </Button>
         {authMessage}
@@ -110,38 +109,38 @@ const Auth = ({ accountInit }) => {
     inputLayout = (
       <Fragment>
         <FormInput
-          id="firstName"
-          type="text"
-          name="First Name"
+          id='firstName'
+          type='text'
+          name='First Name'
           changeHandler={onChangeHandler}
           required={true}
         />
         <FormInput
-          id="lastName"
-          type="text"
-          name="Last Name"
+          id='lastName'
+          type='text'
+          name='Last Name'
           changeHandler={onChangeHandler}
           required={true}
         />
         <FormInput
-          id="email"
-          type="email"
-          name="Email"
+          id='email'
+          type='email'
+          name='Email'
           changeHandler={onChangeHandler}
           required={true}
         />
         <FormInput
-          id="password"
-          type="password"
-          name="Password"
+          id='password'
+          type='password'
+          name='Password'
           changeHandler={onChangeHandler}
           required={true}
           minPass={6}
         />
         <FormInput
-          id="confirmPassword"
-          type="password"
-          name="Confirm Password"
+          id='confirmPassword'
+          type='password'
+          name='Confirm Password'
           changeHandler={onChangeHandler}
           required={true}
           minPass={6}
@@ -157,12 +156,12 @@ const Auth = ({ accountInit }) => {
   }
 
   return (
-    <div className="Auth-Overlay">
-      <div className="Auth">
+    <div className='Auth-Overlay'>
+      <div className='Auth'>
         <h3>Welcome to</h3>
         <h1>
-          <span className="span-green">FX</span> Da
-          <span className="span-green">$</span>hboard
+          <span className='span-green'>FX</span> Da
+          <span className='span-green'>$</span>hboard
         </h1>
         <form onSubmit={onSubmitHandler}>{inputLayout}</form>
       </div>

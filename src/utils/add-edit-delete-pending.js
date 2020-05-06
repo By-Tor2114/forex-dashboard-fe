@@ -3,8 +3,6 @@ import axios from 'axios';
 const BASE_URL = require('./axios');
 
 const addEditDeletePending = async (update, auth, method, _id) => {
-  console.log('in pending util', update, auth, method, _id);
-
   if (method === 'PATCH') {
     try {
       const { data } = await axios.patch(
@@ -50,8 +48,6 @@ const addEditDeletePending = async (update, auth, method, _id) => {
 
       return data.message;
     } catch (error) {
-      console.log(error.response.data.message);
-
       return error.response.data.message;
     }
   }

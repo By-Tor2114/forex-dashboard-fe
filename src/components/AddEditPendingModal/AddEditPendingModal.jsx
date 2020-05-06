@@ -88,7 +88,6 @@ const AddEditPendingModal = ({
       method,
       _id
     );
-    console.log(response, '<==== response');
     if (response) {
       setUpdateMessage(true);
       setUpdateTrades(!updateTrades);
@@ -105,7 +104,6 @@ const AddEditPendingModal = ({
       'DELETE',
       _id
     );
-    console.log(deleted);
 
     if (deleted) {
       setUpdateTrades(!updateTrades);
@@ -117,7 +115,7 @@ const AddEditPendingModal = ({
 
   if (updateMessage) {
     saveChanges = (
-      <p className="span-green font-size-2">
+      <p className='span-green font-size-2'>
         {trade.outcome
           ? 'Trade updated successfully'
           : 'Trade added sucessfully'}
@@ -135,30 +133,30 @@ const AddEditPendingModal = ({
   }
 
   return (
-    <div className="AddEditPendingModal">
-      <div onClick={toggle} className="modal-closer">
+    <div className='AddEditPendingModal'>
+      <div onClick={toggle} className='modal-closer'>
         <h2>X</h2>
       </div>
       <form onSubmit={onSubmitHandler}>
         {method === 'PATCH' ? (
-          <h2 className="trade-modal-header">View/Edit Trade</h2>
+          <h2 className='trade-modal-header'>View/Edit Trade</h2>
         ) : (
-          <h2 className="trade-modal-header">Add Pending Trade</h2>
+          <h2 className='trade-modal-header'>Add Pending Trade</h2>
         )}
 
         <FormInput
           changeHandler={onChangeHandler}
-          id="currencyPair"
-          type="text"
-          name="Currency Pair (required)"
+          id='currencyPair'
+          type='text'
+          name='Currency Pair (required)'
           placeholder={currencyPair || 'example: EUR/USD'}
           required={!trade.currencyPair && true}
         />
 
         <FormInput
           changeHandler={onChangeHandler}
-          id="datePosted"
-          type="date"
+          id='datePosted'
+          type='date'
           name={'Date Posted (required)'}
           value={datePosted && datePosted.slice(0, 10)}
           required
@@ -166,9 +164,9 @@ const AddEditPendingModal = ({
 
         <FormInput
           changeHandler={onChangeHandler}
-          id="tradeDirection"
-          type="select"
-          name="Trade Direction (required)"
+          id='tradeDirection'
+          type='select'
+          name='Trade Direction (required)'
           options={
             tradeDirection !== undefined
               ? tradeDirection === 'Buy'
@@ -180,30 +178,30 @@ const AddEditPendingModal = ({
 
         <AddImage
           changeHandler={uploadImage}
-          id="image-file"
-          type="file"
+          id='image-file'
+          type='file'
           value={imageURL ? 'Change Image' : 'Upload Image'}
-          styling="custom-input"
+          styling='custom-input'
           imageURL={imageURL}
         />
 
         {imageURL && (
-          <a href={imageURL} target="_blank" rel="noopener noreferrer">
-            <img src={imageURL} alt="" />
+          <a href={imageURL} target='_blank' rel='noopener noreferrer'>
+            <img src={imageURL} alt='' />
           </a>
         )}
 
         {imageURL && (
-          <p className="span-highlight mini-message">
+          <p className='span-highlight mini-message'>
             Click image to open full-size in a new tab
           </p>
         )}
 
         <FormInput
           changeHandler={onChangeHandler}
-          id="tradeNotes"
-          type="textarea"
-          name="Trade Notes (optional)"
+          id='tradeNotes'
+          type='textarea'
+          name='Trade Notes (optional)'
           placeholder={
             tradeNotes || 'example: Fib retracement trade off daily support'
           }
@@ -213,12 +211,12 @@ const AddEditPendingModal = ({
         {saveChanges}
 
         {trade.currencyPair && (
-          <Button toggle={deleteTradeHandler} styling="button-delete">
+          <Button toggle={deleteTradeHandler} styling='button-delete'>
             Delete Trade
           </Button>
         )}
 
-        <Button toggle={toggle} styling="button-cancel">
+        <Button toggle={toggle} styling='button-cancel'>
           Close Window
         </Button>
       </form>
