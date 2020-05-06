@@ -8,8 +8,12 @@ const getPending = async (token) => {
       params: {},
       headers: { token },
     });
+    console.log(data, '<----- getPending: data');
+
     return data;
   } catch (error) {
+    console.log(error, '<---- getPending: error');
+
     return error.response.data.message;
   }
 };

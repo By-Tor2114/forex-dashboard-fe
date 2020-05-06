@@ -40,8 +40,6 @@ const Charts = ({ token, user, updateCharts }) => {
   useEffect(() => {
     const fetchTrades = async () => {
       const { trades } = await getTrades(token);
-      const test = await getTrades(token);
-      console.log(test, 'in Charts');
 
       trades.sort((a, b) => new Date(a.dateOpened) - new Date(b.dateOpened));
 

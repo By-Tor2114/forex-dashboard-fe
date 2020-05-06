@@ -42,11 +42,9 @@ const TradeHistory = ({ token, user }) => {
     };
 
     const fetchTrades = async () => {
-      const { trades } = await getTrades(token);
-      console.log(trades, '<------ result');
+      console.log('fetching trades');
 
-      const test = await getTrades(token);
-      console.log(test, '<------ test');
+      const { trades } = await getTrades(token);
 
       trades.sort((a, b) => new Date(a.dateOpened) - new Date(b.dateOpened));
 
