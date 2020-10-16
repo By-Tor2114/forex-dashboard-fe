@@ -1,6 +1,6 @@
 # Forex Dashboard
 
-A full stack React app, based on the MERN stack, that allows trades to record all the fine points of each trade they take. The app also calculates an ongoing equity curve, as well as breaking down all profits and losses by currency pair. This allows traders to see if they are taking larger losses on specific currency pairs, allowing them to assess the issue further. Profits and losses are also broken down to trade direction, allowing for further analysis of outcomes.
+A full stack React app, based on the MERN stack, that allows traders to record all the finer points of each trade they take. The app also calculates an ongoing equity curve, as well as breaking down all profits and losses by currency pair. This allows traders to see if they are taking larger losses on specific currency pairs, allowing them to assess the issue further. Profits and losses are also broken down to trade direction, allowing for further analysis of outcomes.
 
 The app users authentication in order to guard specific routes, as well as ensuring traders are only able to see their own account activity. React's Context API was used for passing information between components.
 
